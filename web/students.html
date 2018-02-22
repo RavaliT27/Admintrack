@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Bus tracking</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />    
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />    
+
+    <link href="css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="plugins/iCheck/flat/blue.css" rel="stylesheet" type="text/css" />
+
+    <link href="plugins/morris/morris.css" rel="stylesheet" type="text/css" />
+
+    <link href="plugins/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+
+    <link href="plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
+
+    <link href="plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+
+    <link href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
+
+
+
+    <link rel="stylesheet" type="text/css" href="css/bus&studentform.css">
+    <link rel="stylesheet" type="text/css" href="css/student.css">
+    <link href="https://fonts.googleapis.com/css?family=Jura" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/popsuccess.css">
+    <script src="js/cpexcel.js"></script>
+    <script src="js/shim.js"></script>
+    <script src="js/jszip.js"></script>
+    <script src="js/xlsx.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="js/ngStorage.js"></script>
+    
+    <style>
+
+      #drop{
+          border:2px dashed #bbb;
+          -moz-border-radius:5px;
+          -webkit-border-radius:5px;
+          border-radius:5px;
+          padding:25px;
+          text-align:center;
+          font:20pt bold,"Vollkorn";color:#bbb
+      }
+      #b64data{
+          width:100%;
+      }
+      a { text-decoration: none 
+      }
+
+
+    </style>
+    <style>
+      /* width */
+      ::-webkit-scrollbar {
+          width: 5px;
+      }
+
+      /* Track */
+      ::-webkit-scrollbar-track {
+          box-shadow: inset 0 0 5px #aef0fe; 
+          border-radius: 10px;
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+          background: #00d0fc; 
+          border-radius: 10px;
+      }
+      #scroll{
+          ::-webkit-scrollbar-thumb {
+              background: red; 
+              border-radius: 10px;
+          } 
+      }
+    </style>
+    <style>
+      th{
+          background-color: #1ad1ff;
+          color:white;
+      }
+      tr{
+          background-color: #b3f0ff;
+      }
+
+      /*        span{
+                   font-weight: bold;
+              }*/
+      .cd-popupwhite{
+          max-width: 400px;
+          height:380px;
+          border:1px solid #6eb44d;
+      }
+      .cd-popupwhite p{
+          font-size:20px;
+          margin: 0px;
+          padding:0px;
+          color:#6eb44d;
+      }
+
+    </style>
+  </head>
+  <body class="skin-blue" ng-app="studentApp" ng-controller="studentCtrl">
+    <div class="wrapper">
+
+      <header class="main-header">
+        <!-- Logo -->
+        <!--        -->
+
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+
+          <!-- Sidebar toggle button-->
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span style="padding:15px 15px;">Menu</span>
+          </a> 
+
+          <span class="school-name" ng-bind='studentdetails.org.orgname'></span>
+          <!--          <img src="images/School.png" style="width:40px;height:40px;float:left">-->
+          <!--<b style="font-size: 25px;margin-left: 5%;color:orange;">Sri Kakatiya School of Excellence &nbsp;BTS</b>-->
+
+          <div class="navbar-custom-menu">
+
+            <ul class="nav navbar-nav">
+
+              <li class="dropdown user user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <img src="images/user1.svg" class="user-image" alt="User Image"/>
+                  <span class="hidden-xs">Sukesh Kumar</span>
+                  <span class="loginicon"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <!-- User image -->
+                  <li class="user-header">
+                    <img src="images/user.png" class="img-circle" alt="User Image" />
+                    <p>
+                      Sukesh Kumar - Software Developer & CTO
+
+                    </p>
+                  </li>
+                  <!-- Menu Body -->
+
+                  <!-- Menu Footer-->
+                  <li class="user-footer">
+
+                    <div class="pull-right">
+                      <a href="" class="btn btn-default btn-flat" ng-click="signout()">Sign out</a>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+      </header>
+      <!-- Left side column. contains the logo and sidebar -->
+      <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+          <!-- Sidebar user panel -->
+          <div class="user-panel">
+            <!--            <div class="pull-left image">
+                          <img src="images/sukesh.jpg" class="img-circle" alt="User Image"/>
+                        </div>-->
+            <div class="pull-left">
+              <img style="width:150px;height:50px;margin:10px 30px;" src="images/neemlogo.png" alt="User Image"/>
+            </div>
+          </div>
+
+          <ul class="sidebar-menu">
+            <li class="header">MAIN NAVIGATION</li>
+            <li>
+              <a href="index.html">
+                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+              </a>
+            </li>
+            <li>
+              <a href="bus.html">
+                <i class="fa fa-files-o"></i>
+                <span>Buses</span>
+
+              </a>
+
+            </li>
+            <li class="active">
+              <a href="#">
+                <i class="fa fa-files-o"></i>
+                <span>Students</span>
+
+              </a>
+
+            </li>
+            <li>
+              <a href="drivercard.html">
+                <i class="fa fa-th"></i> <span>Drivers</span> 
+              </a>
+            </li>
+            <li>
+              <a href="security.html">
+                <i class="fa fa-pie-chart"></i>
+                <span>Bus Security</span>
+
+              </a>
+
+            </li>
+
+
+
+            <li>
+              <a href="#">
+                <i class="fa fa-calendar"></i> <span>Calendar</span>
+
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-envelope"></i> <span>Gallery</span>
+
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-envelope"></i> <span>Categories</span>
+
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-envelope"></i> <span>Settings</span>
+
+              </a>
+            </li>
+
+
+          </ul>
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+
+      <!-- Right side column. Contains the navbar and content of the page -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header" >
+          <h1>
+            Student Details
+            <small>Bus Tracking System</small>
+
+          </h1>
+
+          <!--          <img src="images/buschild.jpg" style="width:100px;height:50px;float:right">-->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+          <!-- Small boxes (Stat box) -->
+          <div class="row">
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3 ng-bind="studentdetails.studentCount"></h3>
+                  <p>Students</p>
+                </div>
+                <div class="icon">
+                  <img src="images/kids.png" style="width:80px;height:80px;">
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-green">
+                <div class="inner">
+                  <h3 ng-bind="studentdetails.driverCount"></h3>
+                  <p>Drivers</p>
+                </div>
+                <div class="icon">
+                  <img src="images/driverblack.png" style="width:80px;height:80px;">
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-yellow">
+                <div class="inner">
+                  <h3 ng-bind="studentdetails.busSecurityCount"></h3>
+                  <p>Bus Securities</p>
+                </div>
+                <div class="icon">
+                  <img src="images/security1.png" style="width:80px;height:80px;">
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-red">
+                <div class="inner">
+                  <h3 ng-bind="studentdetails.buscount"></h3>
+                  <p>Buses</p>
+                </div>
+                <div class="icon">
+                  <img src="images/bus.png" style="width:80px;height:80px;">
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+          </div><!-- /.row -->
+          <!-- Main row -->
+          <!--excel code-->
+          <!--                    <select name="format" style="display:none;" onchange="setfmt()">
+                                  <option value="csv" > CSV</option>
+                                  <option value="json" selected> JSON</option>
+                                  <option value="form"> FORMULAE</option>
+                                  <option value="html"> HTML</option>
+                              </select><br />
+                              <div id="drop" style="display:none;"></div>
+                              <input type="file"  name="xlfile" id="xlf">
+                              
+                              <input type="checkbox" name="useworker" style="display:none;" checked>
+                              <input type="checkbox" name="userabs" style="display:none;" checked>
+          
+                              <pre id="out"></pre>
+                              <button ng-click="showData()">Show data</button>
+                              <div id="htmlout"></div>
+                              <br />-->
+
+
+          <!--excel code end-->
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title">Students Table</h3>
+                
+                  <!--                   <h4 class="box-title sbox" style="float:right;background-color:#b3f0ff;color:#1ad1ff;width:fit-content;padding:5px;border:1px #1ad1ff solid;border-radius: 5px;margin-right: 5px;">Add Student</h4>
+                   <h4 class="box-title sbox" style="float:right;background-color:#b3f0ff;color:#1ad1ff;width:fit-content;padding:5px;border:1px #1ad1ff solid;border-radius: 5px;margin-right: 5px;">Remove student</h4>-->
+
+
+                  <!--                  <div class="box-tools">
+                                      <div class="input-group">
+                                        <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
+                                        <div class="input-group-btn">
+                                          <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                                        </div>
+                                      </div>
+                                    </div>-->
+                </div><!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                  {{variable}}
+                  <table class="table table-hover display" id="example" >
+                     <thead>
+                    <tr>
+                      <th>S.no</th>
+                      <th>Student Name</th>
+                      <th>Street Name</th>
+                      <th>City</th>
+                      <th>State</th>
+                      <th>Pincode</th>
+                      <th>Phone</th>
+                      <th>DOB</th>
+                      <th>Parent Name</th>
+                      <th>Parent Email</th>
+                      <th>Student Email</th>
+                      <th>Student Class</th>
+                      <th>Student Sec</th>
+                      <th>Roll no</th>
+                      <th>Edit/Delete</th>
+                    </tr>
+                     </thead>
+                    <tr ng-repeat="x in xxx">
+                      <td>{{$index + 1}}</td>
+                      <td>{{x.name}}</td>
+                      <td>{{x.address.streetname}}</td>
+                      <td>{{x.address.city}}</td>
+                      <td>{{x.address.state}}</td>
+                      <td>{{x.address.pincode}}</td>
+                      <td>{{x.phone}}</td>
+                      <td>{{x.dob}}</td>
+                      <td>{{x.parentName}}</td>
+                      <td>{{x.parentEmail}}</td>
+                      <td>{{x.studentEmail}}</td>
+                      <td>{{x.studentClass}}</td>
+                      <td>{{x.studentSec}}</td>
+                      <td>{{x.rollno}}</td>
+                      <td><i class="fa fa-pencil editdelete" aria-hidden="true"></i><i class="fa fa-trash editdelete" aria-hidden="true"></i></td>
+                    </tr>
+
+                  </table>
+
+
+                
+
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div>
+          </div>
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+
+      <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+
+        </div>
+        <strong>Copyright@School </strong> All rights reserved.
+      </footer>
+    </div><!-- ./wrapper -->
+    <div class="cd-popup {{pop}}" >
+      <div class="cd-popupwhite" role="alert"> 
+        <img src="images/checkmark.gif" style="width:200px;height:150px;border-radius: 50%;" alt="">
+
+        <p>Success</p>
+        <p class="successmessage" style="color:black;">{{smessage}}</p>
+        <p >
+          <input type="button" class="closebutton" value="OK" ng-click="showpop();" >
+        </p>
+      </div>
+    </div> 
+    <div  class="float_button" ng-click="toggleForm();"> 
+      +
+    </div>
+
+    <!--<button id="myBtn">Open Modal</button>-->
+
+    <!-- The Modal -->
+
+    <div id="myModal" class="modal" ng-hide="modalhide">
+
+      <div class="container">
+        <div class="row main">
+
+
+          <div class="main-login main-center">
+            <span class="close1" ng-click="toggleForm();">  &times;</span>
+            <div class="panel-tit">
+              Add Student Here
+              <hr />
+            </div>
+            <form ng-submit="submit2()">
+              <fieldset>
+
+
+                <input type="text" ng-model="studentstore.name" placeholder="Name" required>
+                <input type="text"  ng-model="studentstore.address.streetname" placeholder="Street name" required>
+                <input type="text"  ng-model="studentstore.address.city" placeholder="city" required><br>
+
+                <input type="text"  ng-model="studentstore.address.state" placeholder="state" required>
+                <input type="text"   ng-model="studentstore.address.pincode" placeholder="pincode" required>
+
+                <input type="number" ng-model="studentstore.phone" placeholder="phone" required><br>
+                <input type="date"  ng-model="studentstore.dob" style="line-height: 10px;width:188px;" placeholder="dob" required>
+
+
+                <input type="text" ng-model="studentstore.parentName" placeholder="parent name" >
+
+
+                <input type="email"  ng-model="studentstore.parentEmail" placeholder="parent email" ><br>
+
+                <input type="text"  ng-model="studentstore.studentEmail" placeholder="student email" >
+                <input type="number"  ng-model="studentstore.studentClass" placeholder="student class" required>
+                <input type="char"   ng-model="studentstore.studentSec" placeholder="student section" required><br>
+                <input type="number"   ng-model="studentstore.rollno" placeholder="Roll no" required><br>
+                <input type="submit" value="submitt">
+
+
+
+
+
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+   <script>
+
+</script>
+    <script>
+
+              var modal = document.getElementById('myModal');
+              var btn = document.getElementsByClassName("float_button")[0];
+
+
+              btn.onclick = function () {
+                  modal.style.display = "block";
+              };
+    </script>
+    <!--excel code script-->
+    <script>
+              var app = angular.module('studentApp', ['ngStorage']);
+              app.controller('studentCtrl', function ($scope, $http, $window, $localStorage) {
+                  if (!$localStorage.token) {
+                      window.location = "/Admintrack/userlogin.html";
+                  }
+                  $scope.busSc = 1;
+                  $scope.pop = "";
+                  $scope.req = false;
+                  $scope.modalhide = true;
+                  $scope.submitted = false;
+                  $scope.errormessage = "";
+                  $scope.variable = "";
+                  $scope.studentdetails = $localStorage.storeinit;
+                  $http.get('http://192.168.0.107:8082/getallStudentsbyorg', {
+                      headers: {'X-AUTH-TOKEN': $localStorage.token}
+                  }).then(
+                          function mySuccess(response)
+                          {
+                              $scope.text = response.data;
+                              if ($scope.text.Error === "No")
+                              {
+                                  //                                        console.log("Data :" + $scope.text.Buses);
+                                  $scope.xxx = $scope.text.Students;
+
+
+                              } else {
+                                  $scope.message = "Error :" + $scope.text.Message;//ordid missing
+
+                              }
+                          }, function myError(response)
+                  {
+                      $scope.message = response.statusText;
+                  }
+
+                  );
+
+
+                  $scope.orgid = 10;
+                  $scope.smessage = "";
+                  $scope.errormessage = "";
+                  $scope.answer = [];
+                  $scope.submit2 = function () {
+
+                      //                            console.log();
+                      $scope.submitted = true;
+                      $http.post('http://192.168.0.107:8082//addStudent', $scope.studentstore, {
+                          headers: {'X-AUTH-TOKEN': $localStorage.token}
+                      })
+                              .then(
+                                      function mySuccess(response)
+                                      {
+                                          $scope.submitted = false;
+
+                                          $scope.text = response.data;
+                                          if ($scope.text.Error === "No")
+                                          {
+                                              $scope.studentdetails.studentCount++;
+                                              $scope.pop = "is-visible";
+                                              $scope.smessage = "Successfully added " + $scope.text.Student.name;
+                                              $scope.xxx.push($scope.text.Student);
+
+                                              $scope.modalhide = true;
+                                              $scope.errormessage = "";
+                                              $scope.studentstore = null;
+
+
+                                          } else {
+                                              //$scope.xyz = $scope.text.sent;
+                                              $scope.smessage = "";
+                                              $scope.errormessage = $scope.text.Message;
+                                          }
+
+                                      }, function myError(response) {
+                                  $scope.submitted = false;
+                                  $scope.pop = "is-visible";
+                                  $scope.errormessage = response.statusText;
+                              });
+                  };
+
+                  $scope.showpop = function () {
+                      $scope.pop = "";
+
+
+
+                  };
+
+
+                  $scope.showData = function () {
+                      $scope.variable = angular.fromJson($window.output, true);
+                      $scope.userData = $scope.variable.Sheet1;
+                      console.log($scope.variable.Sheet1);
+                  };
+
+                  $scope.toggleForm = function ()
+                  {
+                      if ($scope.modalhide === false) {
+                          $scope.modalhide = true;
+                          $scope.studentstore = null;
+                          $scope.errormessage = "";
+
+                      } else
+                          $scope.modalhide = false;
+                  };
+
+                  $scope.signout = function () {
+
+                      $http.get('http://192.168.0.107:8082/logout', {
+                          headers: {'X-AUTH-TOKEN': $localStorage.token}
+                      })
+                              .then(
+                                      function mySuccess(response)
+                                      {
+
+                                          $scope.mainpage = response.data;
+                                          if ($scope.mainpage.Error === "No")
+                                          {
+                                              $localStorage.storeinit = null;
+                                              $localStorage.token = null;
+                                              window.location = "/Admintrack/userlogin.html";
+
+                                          } else
+                                          {
+                                              $scope.message = $scope.mainpage.Message;
+                                              alert($scope.message);
+                                          }
+
+                                      }, function myError(response)
+                              {
+                                  $scope.message = response.statusText;
+                              }
+
+                              );
+                  };
+
+              });
+
+    </script>
+    <script>
+              /*jshint browser:true */
+              /* eslint-env browser */
+              /*global Uint8Array, console */
+              /*global XLSX */
+              var X = XLSX;
+              var output = "";
+              var XW = {
+                  /* worker message */
+                  msg: 'xlsx',
+                  /* worker scripts */
+                  worker: 'js/xlsxworker.js'
+              };
+
+              var global_wb;
+
+              var process_wb = (function () {
+                  output = "";
+                  var OUT = document.getElementById('out');
+                  var HTMLOUT = document.getElementById('htmlout');
+
+                  var get_format = (function () {
+                      var radios = document.getElementsByName("format");
+                      return function () {
+                          for (var i = 0; i < radios.length; ++i)
+                              if (radios[i].checked || radios.length === 1)
+                                  return radios[i].value;
+                      };
+                  })();
+
+                  var to_json = function to_json(workbook) {
+                      var result = {};
+                      workbook.SheetNames.forEach(function (sheetName) {
+                          var roa = X.utils.sheet_to_json(workbook.Sheets[sheetName]);
+                          if (roa.length)
+                              result[sheetName] = roa;
+                      });
+                      return JSON.stringify(result, 2, 2);
+                  };
+
+                  var to_csv = function to_csv(workbook) {
+                      var result = [];
+                      workbook.SheetNames.forEach(function (sheetName) {
+                          var csv = X.utils.sheet_to_csv(workbook.Sheets[sheetName]);
+                          if (csv.length) {
+                              result.push("SHEET: " + sheetName);
+                              result.push("");
+                              result.push(csv);
+                          }
+                      });
+                      return result.join("\n");
+                  };
+
+                  var to_fmla = function to_fmla(workbook) {
+                      var result = [];
+                      workbook.SheetNames.forEach(function (sheetName) {
+                          var formulae = X.utils.get_formulae(workbook.Sheets[sheetName]);
+                          if (formulae.length) {
+                              result.push("SHEET: " + sheetName);
+                              result.push("");
+                              result.push(formulae.join("\n"));
+                          }
+                      });
+                      return result.join("\n");
+                  };
+
+                  var to_html = function to_html(workbook) {
+                      HTMLOUT.innerHTML = "";
+                      workbook.SheetNames.forEach(function (sheetName) {
+                          var htmlstr = X.write(workbook, {sheet: sheetName, type: 'binary', bookType: 'html'});
+                          HTMLOUT.innerHTML += htmlstr;
+                      });
+                      return "";
+                  };
+
+                  return function process_wb(wb) {
+                      global_wb = wb;
+                      output = "";
+                      switch (get_format()) {
+                          case "form":
+                              output = to_fmla(wb);
+                              break;
+                          case "html":
+                              output = to_html(wb);
+                              break;
+                          case "json":
+                              output = to_json(wb);
+                              break;
+                          default:
+                              output = to_csv(wb);
+                      }
+                      output = JSON.stringify(output);
+                      if (OUT.innerText === undefined)
+                          OUT.textContent = output;
+                      else
+                          OUT.innerText = output;
+
+                      if (typeof console !== 'undefined')
+                          console.log("output", new Date());
+                  };
+              })();
+
+              var setfmt = window.setfmt = function setfmt() {
+                  if (global_wb)
+                      process_wb(global_wb);
+              };
+
+              var b64it = window.b64it = (function () {
+                  var tarea = document.getElementById('b64data');
+                  return function b64it() {
+                      if (typeof console !== 'undefined')
+                          console.log("onload", new Date());
+                      var wb = X.read(tarea.value, {type: 'base64', WTF: false});
+                      process_wb(wb);
+                  };
+              })();
+
+              var do_file = (function () {
+                  var rABS = typeof FileReader !== "undefined" && (FileReader.prototype || {}).readAsBinaryString;
+                  var domrabs = document.getElementsByName("userabs")[0];
+                  if (!rABS)
+                      domrabs.disabled = !(domrabs.checked = false);
+
+                  var use_worker = typeof Worker !== 'undefined';
+                  var domwork = document.getElementsByName("useworker")[0];
+                  if (!use_worker)
+                      domwork.disabled = !(domwork.checked = false);
+
+                  var xw = function xw(data, cb) {
+                      var worker = new Worker(XW.worker);
+                      worker.onmessage = function (e) {
+                          switch (e.data.t) {
+                              case 'ready':
+                                  break;
+                              case 'e':
+                                  console.error(e.data.d);
+                                  break;
+                              case XW.msg:
+                                  cb(JSON.parse(e.data.d));
+                                  break;
+                          }
+                      };
+                      worker.postMessage({d: data, b: rABS ? 'binary' : 'array'});
+                  };
+
+                  return function do_file(files) {
+                      rABS = domrabs.checked;
+                      use_worker = domwork.checked;
+                      var f = files[0];
+                      var reader = new FileReader();
+                      reader.onload = function (e) {
+                          if (typeof console !== 'undefined')
+                              console.log("onload", new Date(), rABS, use_worker);
+                          var data = e.target.result;
+                          if (!rABS)
+                              data = new Uint8Array(data);
+                          if (use_worker)
+                              xw(data, process_wb);
+                          else
+                              process_wb(X.read(data, {type: rABS ? 'binary' : 'array'}));
+                      };
+                      if (rABS)
+                          reader.readAsBinaryString(f);
+                      else
+                          reader.readAsArrayBuffer(f);
+                  };
+              })();
+
+              (function () {
+                  var drop = document.getElementById('drop');
+                  if (!drop.addEventListener)
+                      return;
+
+                  function handleDrop(e) {
+                      e.stopPropagation();
+                      e.preventDefault();
+                      do_file(e.dataTransfer.files);
+                  }
+
+                  function handleDragover(e) {
+                      e.stopPropagation();
+                      e.preventDefault();
+                      e.dataTransfer.dropEffect = 'copy';
+                  }
+
+                  drop.addEventListener('dragenter', handleDragover, false);
+                  drop.addEventListener('dragover', handleDragover, false);
+                  drop.addEventListener('drop', handleDrop, false);
+              })();
+
+              (function () {
+                  var xlf = document.getElementById('xlf');
+                  if (!xlf.addEventListener)
+                      return;
+                  function handleFile(e) {
+                      do_file(e.target.files);
+                  }
+                  xlf.addEventListener('change', handleFile, false);
+              })();
+    </script>
+    <script type="text/javascript">
+              /* eslint no-use-before-define:0 */
+              var _gaq = _gaq || [];
+              _gaq.push(['_setAccount', 'UA-36810333-1']);
+              _gaq.push(['_trackPageview']);
+
+              (function ()
+              {
+                  var ga = document.createElement('script');
+                  ga.type = 'text/javascript';
+                  ga.async = true;
+                  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                  var s = document.getElementsByTagName('script')[0];
+                  s.parentNode.insertBefore(ga, s);
+              })();
+    </script>
+    <!--excel code script end-->
+
+    <!-- jQuery 2.1.3 -->
+    <script src="plugins/jQuery/jQuery-2.1.3.min.js"></script>
+    <!-- jQuery UI 1.11.2 -->
+    <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.min.js" type="text/javascript"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+              $.widget.bridge('uibutton', $.ui.button);
+    </script>
+    <!-- Bootstrap 3.3.2 JS -->
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>    
+    <!-- Morris.js charts -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="plugins/morris/morris.min.js" type="text/javascript"></script>
+    <!-- Sparkline -->
+    <script src="plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
+    <!-- jvectormap -->
+    <script src="plugins/jvectormap/jquery-jvectormap-1.2.2.min.js" type="text/javascript"></script>
+    <script src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js" type="text/javascript"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="plugins/knob/jquery.knob.js" type="text/javascript"></script>
+    <!-- daterangepicker -->
+    <script src="plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
+    <!-- datepicker -->
+    <script src="plugins/datepicker/bootstrap-datepicker.js" type="text/javascript"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
+    <!-- iCheck -->
+    <script src="plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+    <!-- Slimscroll -->
+    <script src="plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <!-- FastClick -->
+    <script src='plugins/fastclick/fastclick.min.js'></script>
+    <!-- AdminLTE App -->
+    <script src="js/app.min.js" type="text/javascript"></script>
+
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="js/pages/dashboard.js" type="text/javascript"></script>
+
+    <!-- AdminLTE for demo purposes -->
+    <script src="js/demo.js" type="text/javascript"></script>
+  </body>
+</html>

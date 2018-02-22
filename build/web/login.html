@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="css/login.css">
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        <style>
+            
+            </style>
+<!--         <script>
+        function validate(){
+            
+            var name=document.forms["login"]["user"].value;
+            var pswd=document.forms["login"]["password"].value;
+            if(name==="admin"&&pswd==="admin")
+            {
+                return true;
+            }
+            var x = document.getElementById("snackbar");
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
+            return false;
+            
+        }
+        </script>-->
+    </head>
+    <body style="margin:0px;padding: 0px;">
+<div class="grip" align="center">
+    <form name="login" method="POST" action="">
+<div class="form">
+    <div>
+    <img src="images/demo.jpg" style="font-size:65px;margin-top: -60px;width:25%;height:25%; border-radius: 50%;">
+  </div>
+       <div class="field-wrap">
+                <label>User Name</label>
+                <input type="text" required name="user">
+            </div>
+            <div class="field-wrap">
+                <label>Password</label>
+                <input type="password" required name="password">
+            </div>
+<div>
+       <input type="submit" value="submit" onclick="validate()"><br>
+</div>
+<div >
+  <span class="psw">Forgot <a href="#">password?</a></span> 
+  <span class="psw" style="float: left"> <input type="checkbox" checked="checked"> Remember me
+  </span>
+   </div>
+ </div>
+     </form>
+   
+</div><div id="snackbar">fesrgdrg</div>
+<!--            <script>
+                function validate(){
+            var name=document.forms["login"]["user"].value;
+            var pswd=document.forms["login"]["password"].value;
+            console.log(name+"  h:"+pswd);
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) 
+            {alert("hello");
+            	console.log(this.responseText);
+        var x = document.getElementById("snackbar");
+    x.className = "show";
+    x.innerHTML=""+this.responseText;
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
+            }
+        xmlhttp.open("POST","http://123.201.150.240:8085/login?username=" + name + "&pswd=" +pswd, true);
+        xmlhttp.send();
+             };
+       
+                }
+
+
+
+
+            </script>-->
+<script>
+      function validate(){
+       
+var xmlhttp;
+    if (window.XMLHttpRequest) {
+    // code for modern browsers
+    xmlhttp = new XMLHttpRequest();
+ } else {
+    // code for old IE browsers
+    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+           alert("HELLO");
+
+}
+			ajax.onreadystatechange = function(){
+				if(this.readyState === 4 && this.status === 200){
+					var check = this.responseText;
+					alert(check);
+					if(check === "true"){
+//						setCookie('username',form.username.value,10);
+						location.replace("index3.html");
+					}
+					else if(check === "false"){
+						id("snackbar").textContent="wrong username or password";
+						return;
+					}
+					else{
+						id("snackbar").textContent="...error";		
+						return;
+					}
+				}
+			};
+			ajax.open("POST","http://123.201.150.240:8085/login?username="+form.user.value+"&pswd="+form.password.value);
+//			ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+			ajax.send();
+                    }
+                                     </script>
+
+        <script>
+            $('.form').find('input').on('keyup', function (e) {
+  
+  var $this = $(this),
+      label = $this.prev('label');
+
+	  if (e.type === 'keyup') 
+          {
+			if ($this.val() === '') 
+                        {
+          label.removeClass('active');
+        } 
+        else 
+        {
+          label.addClass('active');
+        }
+    } });
+
+        </script>
+       
+
+</body>
+   
+</html>

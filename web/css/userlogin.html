@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <!-- Website CSS style -->
+    <!--<link rel="stylesheet" type="text/css" href="css/userlogin.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="css/leadlogin.css">-->
+    <link rel="stylesheet" type="text/css" href="css/userlogin.css">
+
+    <!-- Website Font style -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+    <!--<script src="js/angular.js" type="text/javascript"></script>-->
+                      <script src="angular.js" type="text/javascript"></script>
+
+    <script src="js/angular-route.js" type="text/javascript"></script>
+    <script src="js/loadlash.js" type="text/javascript"></script>
+    <script src="js/ngStorage.js" type="text/javascript"></script>
+
+    <title>Admin</title>
+    <style>
+      body{
+          background-image: url("images/white.jpg");
+      }
+    </style>
+    <base href="/BusTrackingLogins/">
+  </head>
+  <body ng-app="myUserLogin" ng-controller="myUserLoginCtrl">
+    <div class="container">
+
+      <div class="row main" ng-show="{{!password_screen}}">
+        <form ng-submit="userlogin();">
+
+          <div class="main-login main-center" id="userid" style="display: block;">
+            <div class="image">
+              <img src="images/neemlogo.png" style="width:100px;height:40px;">
+            </div>
+            <span class="title" style="font-size: 18px;margin-bottom: 40px;font-weight: bold;">Login Here</span><br>
+            <span class="title" style="font-size: 12px;margin-bottom: 40px;">to continue to bus tracking</span>
+            <!--<form class="form-horizontal" method="post" >-->
+
+            <div class="form-group">
+              <div class="cols-sm-10">
+                <div class="form">
+                  <label class="labelclass" ng-model="userLogin.username">Enter the username</label>
+                  <input type="text" class="field-wrap form-control" name="username" required id="uname">
+
+
+                </div>
+              </div>
+            </div>
+
+
+            <div class="form-group forgot">
+              <a href="index.php" style="float:left" >Forgot Username?</a>
+
+            </div>
+            <div class="form-group ">
+              <input type="button" class="login-button" onclick="func();" value="NEXT">
+            </div>
+
+            <!--</form>-->
+          </div>
+
+
+
+
+
+
+          <div class="main-login main-center" id="pswdid" style="display:none;">
+            <div class="image">
+              <img src="images/neemlogo.png" alt="" style="width:100px;height:40px;">
+              <button style="float:right;background: none;border:none;" onclick="back();"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+
+            </div>
+            <span class="title" style="font-size: 18px;margin-bottom: 40px;font-weight: bold;">Welcome</span><br>
+
+            <img id="myImg" src="images/user1.png" alt="image not found" style="width:15px;height:15px;margin-top: 0px;">
+            <span class="title" style="font-size: 13px;margin-bottom: 40px;">Sukesh Kumar</span>
+            <!--<form class="form-horizontal"  >-->
+
+            <div class="form-group">
+
+              <div class="cols-sm-10">
+                <div class="form" ng-submit="userlogin();">
+                  <label class="labelclass" ng-model="userLogin.password">Enter the password</label>
+                  <input type="password"  class=" form-control" name="password" id="pswd"/>
+
+
+                </div>
+              </div>
+            </div>
+
+            <div class="img-group" style=" margin-bottom: 20px;margin-top: 0px;">
+              <button   onclick="showp();" style="border:none;margin-top: 5px;">
+                <img id="myImg" src="images/openeye.png" style="width:20px;height:20px;background: none;float:right;">
+              </button>
+            </div>
+
+            <div class="form-group forgot" style="margin-bottom: 0px;">
+              <a href="index.php" style="float:left" >Forgot password?</a>
+
+            </div>
+
+            <div class="form-group " style="margin-top: 0px;">
+              <input type="submit" class="login-button"  value="LOGIN">
+            </div>
+
+            <!--</form>-->
+          </div>
+        </form>
+        <!--        <div class="cd-popup {{}} " >
+                  <div class="cd-popupwhite" role="alert"> 
+                    <img src="images/checkmark.gif" style="width:200px;height:150px;border-radius: 50%;" alt="">
+        
+                    <p>Success</p>
+                    <p class="successmessage" style="color:black;">{{message}}</p>
+                    <p >
+                      <input type="button" class="closebutton" value="OK" ng-click="showpop();">
+                    </p>
+                  </div>
+                </div> -->
+      </div>
+    </div>
+    <div class="row main" ng-show="{{password_screen}}">
+      <form name="myForm" ng-submit="newlogin();">
+        <div class="main-login main-center" id="userid" style="display: block;">
+          <div class="image">
+            <img src="images/neemlogo.png" style="width:100px;height:40px;">
+          </div>
+          <span class="title" style="font-size: 18px;margin-bottom: 40px;font-weight: bold;">Hi,{{location}}!</span><br>
+          <span class="title" style="font-size: 18px;margin-bottom: 40px;font-weight: bold;">Create Password Here</span><br>
+          <span class="title" style="font-size: 12px;margin-bottom: 40px;">to continue to bus tracking</span>
+          <!--<form class="form-horizontal" method="post" >-->
+
+          <div class="form-group">
+            <div class="cols-sm-10">
+              <div class="form">
+                <label class="labelclass">New Password</label>
+                <input type="text" class="field-wrap form-control"  ng-model="userLogin.username" name="username" required id="uname">
+                <label class="labelclass">Confirm Password</label>
+                <input type="text"  ng-model="userLogin.confirm" class="field-wrap form-control" name="username" required id="upname">
+
+              </div>
+            </div>
+          </div>  
+          <div class="form-group ">
+            <input type="submit" class="login-button" value="Generate Password">
+          </div>
+
+          <!--</form>-->
+        </div>
+      </form>
+    </div>
+
+    <script>
+              var app = angular.module('myUserLogin', ["ngStorage"], function ($locationProvider)
+              {
+                  $locationProvider.html5Mode(true);
+              });
+              app.controller('myUserLoginCtrl', function ($scope, $http, $window, $location, $localStorage)
+              {
+                  $scope.req = false;
+                  $scope.currentUrl = $location.url();
+                  $scope.location = $location.search();
+                  $scope.activationKey = $scope.location.activationKey;
+                  $scope.phone = $scope.location.phone;
+
+                  if ($scope.phone && $scope.activationKey) {
+                      $scope.location = "true";
+                      $scope.password_screen = true;
+                  } else {
+                      $scope.location = "false";
+}
+// if ($scope.phone && $scope.activationKey && username) {
+//                      
+//                  } else {
+//                      $scope.location = "false";
+//}
+$scope.newlogin = function (uname)
+{
+  if($scope.userLogin.username===$scope.userLogin.confirm)
+  {
+    $localStorage.user = $scope.activationKey;
+           window.location = "passwordpage.html";
+         }
+         else{
+           
+         }
+                
+};
+                                     
+           
+
+$scope.userlogin = function () {
+                      $http.get('http://192.168.0.107:8082/login?username=neemiit&pswd=123456')
+                              .then(
+                                      function Success(response)
+                                      {
+                                          $scope.login = response.data;
+                                          if ($scope.login.Error === "No")
+                                          {
+
+                                              $scope.pop = "is-visible";
+                                              window.location = "/Admintrack/index3.html";
+                                          } else {
+                                              $scope.message = $scope.login.Message;
+                                          }
+
+                                      },
+                                      function fail(response) {
+
+                                      });
+                      $scope.submitted = true;
+                  };
+
+
+                  $scope.createPass = function (pass) {
+                      if (pass && $scope.phone && $scope.activationKey) {
+
+                          $http.get('http://192.168.0.107:8082/activationKey?activationKey=' + $scope.activationKey + '&username=' + $scope.phone + '&pswd=' + pass)
+                                  .then(
+                                          function Success(response)
+                                          {
+
+
+                                          },
+                                          function error(response) {
+
+                                          });
+                      }
+                  };
+                  $scope.userlogin = function () {
+                      $http.get('http://192.168.0.107:8082/login?username=neemiit&pswd=123456')
+                              .then(
+                                      function Success(response)
+                                      {
+                                          $scope.login = response.data;
+                                          if ($scope.login.Error === "No")
+                                          {
+
+                                              $scope.pop = "is-visible";
+                                              window.location = "/Admintrack/index3.html";
+                                          } else {
+                                              $scope.message = $scope.login.Message;
+                                          }
+
+                                      },
+                                      function fail(response) {
+
+                                      });
+                      $scope.submitted = true;
+                  };
+
+                  $scope.showpop = function () {
+                      $scope.pop = "";
+                  };
+              });
+
+              function func() {
+
+                  if (document.getElementById('uname').validity.valid)
+                  {
+                      document.getElementById('userid').style.display = 'none';
+                      document.getElementById('pswdid').style.display = 'block';
+                      document.getElementById('pswd').value = "";
+                  } else {
+                      alert("fill the field");
+                  }
+              }
+              function back() {
+                  document.getElementById('userid').style.display = 'block';
+                  document.getElementById('uname').value = "";
+                  document.getElementById('pswdid').style.display = 'none';
+              }
+              function showp() {
+                  if (document.getElementById('pswd').type === "text")
+                  {
+                      document.getElementById('pswd').type = "password";
+                      document.getElementById("myImg").src = "images/openeye.png";
+                  } else {
+
+                      document.getElementById("myImg").src = "images/closedeye.png";
+                      document.getElementById('pswd').type = "text";
+                  }
+
+
+              }
+
+              $('.form').find('input').on('keyup', function (e)
+              {
+
+                  var $this = $(this),
+                          label = $this.prev('label');
+                  if (e.type === 'keyup')
+                  {
+                      if ($this.val() === '')
+                      {
+                          label.removeClass('active');
+                      } else
+                      {
+                          label.addClass('active');
+                      }
+                  }
+              });
+    </script>
+
+  </body>
+</html>

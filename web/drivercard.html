@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Bus tracking</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <!-- Bootstrap 3.3.2 -->
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />    
+    <!-- FontAwesome 4.3.0 -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Ionicons 2.0.0 -->
+    <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />    
+    <!-- Theme style -->
+    <link href="css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="plugins/iCheck/flat/blue.css" rel="stylesheet" type="text/css" />
+
+    <link href="plugins/morris/morris.css" rel="stylesheet" type="text/css" />
+
+    <link href="plugins/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+
+    <link href="plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
+
+    <link href="plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+
+    <link href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/popsuccess.css">
+
+    <link rel="stylesheet" type="text/css" href="css/driver&securityform.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Jura" rel="stylesheet">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/driver.css">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <script src="js/ngStorage.js"></script>
+    <!-- <script type="text/javascript">
+            function hell(x) {
+                    // body...
+                    alert("hell is running"+x);
+            }
+    </script> -->
+
+
+    <style>
+      .card{
+
+          width:330px;
+          background-color: #77c56d;
+          border-radius: 8px;
+          padding-bottom: 5px;
+          margin: 10px;
+          max-height:600px;
+      }
+      .card img{
+          float:left;
+      }
+
+      /*hr{
+              position: relative;
+              float: left;
+              width: 100%;
+      }*/
+      .span-btn{
+          float: right;
+          margin: 3px;
+          font-weight: bold;
+          padding: 2px 6px;
+          background-color:#DADADA;
+          border-radius: 50%;
+          box-shadow: 2px;
+          cursor: pointer;
+      }
+      table{
+          color:white;
+          border-radius: 10px;
+          margin:20px 10px;
+          width:310px;
+          height:100px;
+
+
+      }
+
+      tr,td{
+          /* 	border:1px solid black;*/
+
+          /*width:70px;*/
+          background-color: white;
+          color:black;
+          padding:0px 5px;
+          border:1px solid #77c56d;
+      }
+      .bott
+      {
+          height:50px;
+          width:280px;
+          background-color: #ffa366;
+          border-radius: 5px;
+          margin:10px;
+
+      }
+
+      .edit{
+          display: block;
+          margin-top: 50px;
+
+      }
+      .fa{
+          padding:5px;
+      }
+      h3,h4{
+          margin:0px;
+          padding:0px;
+          color:white;
+          font-size: 22px;
+      }
+
+      /*model*/
+      /*.modal-main{
+                      position:fixed;
+                      top: 0px;
+                      left: 0px;
+                      width: 100%;
+                      height:100%;
+                      background-color:rgba(0, 0, 0, 0.2);
+                      display: none;
+                      animation: zoom 200ms ease-in;
+                 -webkit-animation: zoom 200ms ease-in;
+              }
+              .model-in{
+                      width: 400px;
+                      height: auto;
+                      padding: 5px;
+                      background-color: white;
+                      border-radius: 10px;
+                      
+              }*/
+      .middle{
+          top: 50%;
+          left: 50%;
+          position: relative;
+          -moz-transform: translate(-50%,-50%);
+          -webkit-transform: translate(-50%,-50%);
+          -o-transform: translate(-50%,-50%);
+          -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+
+      }
+      /*	.modal-close{
+              float: right;
+              font-weight: bold;
+              padding: 2px 6px;
+              background-color:#DADADA;
+              border-radius: 50%;
+              box-shadow: 2px;
+              cursor: pointer;
+              }
+              .modal-close:hover{
+                      background-color:#E61400;
+              }
+              .model-head{
+                      padding: 10px;
+                      text-align: center;
+                      font-weight: bold;
+              }*/
+
+      /* Safari 4.0 - 8.0 */
+      @-webkit-keyframes zoom {
+          from {transform:scale(0);}
+          to {transform: scale(1);}
+      }
+
+      /* Standard syntax */
+      @keyframes zoom {
+          0% {transform:scale(0);}
+          50% {transform: scale(1.2);}
+          100% {transform: scale(1);}
+      }
+
+      /*end model*/
+
+      .fbtn{
+          display: inline-block;
+          align:center;
+          margin: 5px auto; 
+          padding: 5px 10px;
+          background-color:rgb(0, 45, 86);
+          border-radius: 5px;
+          color: white;
+          cursor: pointer;
+          box-shadow: 2px 2px 5px #888888;
+      }
+      .fbtn:hover{
+          background-color: black;
+      }
+      table textarea{
+          resize: none;
+          background:white;
+          border:0px solid black;
+          color:black;
+          overflow:hidden
+      }
+
+
+      /*snackbar*/
+      #snackbar {
+          visibility: hidden;
+          min-width: 250px;
+          margin-left: -125px;
+          background-color: #333;
+          color: #fff;
+          text-align: center;
+          border-radius: 2px;
+          padding: 16px;
+          position: fixed;
+          z-index: 1;
+          left: 50%;
+          bottom: 30px;
+          font-size: 17px;
+      }
+
+      #snackbar.show {
+          visibility: visible;
+          -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+          animation: fadein 0.5s, fadeout 0.5s 2.5s;
+      }
+
+      @-webkit-keyframes fadein {
+          from {bottom: 0; opacity: 0;} 
+          to {bottom: 30px; opacity: 1;}
+      }
+
+      @keyframes fadein {
+          from {bottom: 0; opacity: 0;}
+          to {bottom: 30px; opacity: 1;}
+      }
+
+      @-webkit-keyframes fadeout {
+          from {bottom: 30px; opacity: 1;} 
+          to {bottom: 0; opacity: 0;}
+      }
+
+      @keyframes fadeout {
+          from {bottom: 30px; opacity: 1;}
+          to {bottom: 0; opacity: 0;}
+      }
+      /*End of Snackbar*/
+
+
+      /* 
+      #floating-button{
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        background: #db4437;
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        cursor: pointer;
+        box-shadow: 0px 2px 5px #666;
+      }*/
+
+      .plus{
+          color: white;
+          position: absolute;
+          top: 0;
+          display: block;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          text-align: center;
+          padding: 0;
+          margin: 0;
+          line-height: 55px;
+          font-size: 38px;
+          font-family: 'Roboto';
+          font-weight: 300;
+          animation: plus-out 0.3s;
+          transition: all 0.3s;
+      }
+      .cd-popupwhite{
+          max-width: 400px;
+          height:380px;
+          border:1px solid #6eb44d;
+      }
+      .cd-popupwhite p{
+          font-size:20px;
+          margin: 0px;
+          padding:0px;
+          color:#6eb44d;
+      }
+      /*            #container-floating{
+                      position: fixed;
+                      width: 70px;
+                      height: 70px;
+                      bottom: 30px;
+                      right: 30px;
+                      z-index: 50;
+                  }
+      
+                  #container-floating:hover{
+                      height: 400px;
+                      width: 90px;
+                      padding: 30px;
+                  }
+      
+                  #container-floating:hover .plus{
+                      animation: plus-in 0.15s linear;
+                      animation-fill-mode: forwards;
+                  }*/
+
+      .edit{
+          position: absolute;
+          top: 0;
+          display: block;
+          bottom: 0;
+          left: 0;
+          display: block;
+          right: 0;
+          padding: 0;
+          opacity: 0;
+          margin: auto;
+          line-height: 65px;
+          transform: rotateZ(-70deg);
+          transition: all 0.3s;
+          animation: edit-out 0.3s;
+      }
+
+      #container-floating:hover .edit{
+          animation: edit-in 0.2s;
+          animation-delay: 0.1s;
+          animation-fill-mode: forwards;
+      }
+
+      @keyframes edit-in{
+          from {opacity: 0; transform: rotateZ(-70deg);}
+          to {opacity: 1; transform: rotateZ(0deg);}
+      }
+
+      @keyframes edit-out{
+          from {opacity: 1; transform: rotateZ(0deg);}
+          to {opacity: 0; transform: rotateZ(-70deg);}
+      }
+
+      @keyframes plus-in{
+          from {opacity: 1; transform: rotateZ(0deg);}
+          to {opacity: 0; transform: rotateZ(180deg);}
+      }
+
+      @keyframes plus-out{
+          from {opacity: 0; transform: rotateZ(180deg);}
+          to {opacity: 1; transform: rotateZ(0deg);}
+      }
+    </style>
+    <style>
+      th{
+          /*            background-color: #00a65a;*/
+          background-color: #40bf80;
+          color:white;
+      }
+      tr{
+          background-color: #40bf80;
+      }
+      .fasize{
+          margin: 0px;
+          padding: 0px;
+          font-size:20px;
+      }
+
+      /*        span{
+                   font-weight: bold;
+              }*/
+      .closebutton{
+          padding:10px 20px; 
+          background-color: #6eb44d;
+          border:none;
+          border-radius: 10px;
+          margin-top:80px;
+          color:white;
+          font-size: 15px;
+          font-weight: bold;
+      }
+      .error_closebutton{
+          padding:10px 20px; 
+          background-color: #6eb44d;
+          border:none;
+          border-radius: 10px;
+          margin-top:80px;
+          color:white;
+          font-size: 15px;
+          font-weight: bold;
+      }
+      .conf{
+       
+          padding: 5px;
+          text-align: center;
+      
+          
+      }
+      .conf span{
+          margin: 5px;
+           background-color: #85c650;
+               border-radius: 5px;
+               padding: 10px 20px;
+                font-weight: bold;
+      }
+      .sure{
+          margin: 10px;
+      }
+      .douwant{
+            margin: 10px;
+      }
+      .sure span{
+          font-size: 20px;
+     
+          
+      }
+      .douwant span{
+             font-size: 20px;
+        
+      }
+   
+    </style>
+
+
+
+  </head>
+  <body class="skin-blue" ng-app="driverApp" ng-controller="driverCtrl">
+    <!-- The Modal -->
+
+    <div id="myModal" class="modal" >
+      <!--ng-hide="modalhide"-->
+
+      <!-- Modal content -->
+      <div class="container">
+        <div class="row main">
+          <div class="main-login main-center">
+            <span class="close1" ng-click="closeForm();">  &times;</span>
+            <div class="panel-tit">
+              Add Driver Here  
+              <hr/>
+            </div>
+            <form ng-submit="submit2()" id="formreset">
+              <!--<input type="text"><br>-->
+              Name<input type="text" ng-model="xyz.name" placeholder="enter the name" required><br>
+              Street name<input type="text"  ng-model="xyz.address.streetname"  placeholder="enter the street name" required>
+              City<input type="text"  ng-model="xyz.address.city" placeholder="enter the city" required>
+              State  <input type="text"  ng-model="xyz.address.state" placeholder="enter the state" required>
+              Pincode <input type="text"   ng-model="xyz.address.pincode"  placeholder="enter the pincode" required><br>
+              Phone No <input type="text" ng-model="xyz.phone"  placeholder="enter the phone no" required>
+              Experience <input type="number" ng-model="xyz.experiance" min="1" placeholder="enter the experience" required><br>
+              Badge Number <input type="text" ng-model="xyz.badgeNumber" placeholder="enter the badge number" required><br>
+              Known Languages <input type="text" ng-model="xyz.knownLanguages" placeholder="enter the known languages" required><br>
+              Driving License <input type="text" ng-model="xyz.drivingLicense" placeholder="enter the driving license" required>
+
+              Date of birth <input type="date" style="" ng-model="xyz.dob"   placeholder="enter the DOB" required><br>
+              Valid from <input type="date" ng-model="xyz.validfrom" placeholder="valid from" required>
+              Valid to  <input type="date" ng-model="xyz.validto" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" placeholder="valid to" required><br>
+              <input type="submit" value="submitt" id="clickme">
+
+
+            </form>
+            <div class="panel-tit" style=" text-align: center;margin-top:30px;">
+              <span style="color:red;">{{errormessage}}</span> 
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="wrapper">
+
+      <header class="main-header">
+        <!-- Logo -->
+        <!--        -->
+
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+
+          <!-- Sidebar toggle button-->
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span style="padding:15px 15px;">Menu</span>
+          </a> 
+
+          <span class="school-name" ng-bind='driverdetails.org.orgname'> </span>
+          <!--          <img src="images/School.png" style="width:40px;height:40px;float:left">-->
+          <!--<b style="font-size: 25px;margin-left: 5%;color:orange;">Sri Kakatiya School of Excellence &nbsp;BTS</b>-->
+
+          <div class="navbar-custom-menu">
+
+            <ul class="nav navbar-nav">
+
+              <li class="dropdown user user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <img src="images/user1.svg" class="user-image" alt="User Image"/>
+                  <span class="hidden-xs">Sukesh Kumar</span>
+                  <span class="loginicon"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <!-- User image -->
+                  <li class="user-header">
+                    <img src="images/user.png" class="img-circle" alt="User Image" />
+                    <p>
+                      Sukesh Kumar - Software Developer & CTO
+
+                    </p>
+                  </li>
+                  <!-- Menu Body -->
+
+                  <!-- Menu Footer-->
+                  <li class="user-footer">
+
+                    <div class="pull-right">
+                      <a href="" class="btn btn-default btn-flat" ng-click="signout()">Sign out</a>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+      </header>
+      <!-- Left side column. contains the logo and sidebar -->
+      <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+          <!-- Sidebar user panel -->
+          <div class="user-panel">
+            <!--            <div class="pull-left image">
+                          <img src="images/sukesh.jpg" class="img-circle" alt="User Image"/>
+                        </div>-->
+            <div class="pull-left">
+              <img style="width:150px;height:50px;margin:10px 30px;" src="images/neemlogo.png" alt="User Image"/>
+            </div>
+          </div>
+
+          <ul class="sidebar-menu">
+            <li class="header">MAIN NAVIGATION</li>
+            <li>
+              <a href="index.html">
+                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+              </a>
+            </li>
+            <li>
+              <a href="bus.html">
+                <i class="fa fa-files-o"></i>
+                <span>Buses</span>
+
+              </a>
+
+            </li>
+            <li>
+              <a href="students.html">
+                <i class="fa fa-files-o"></i>
+                <span>Students</span>
+
+              </a>
+
+            </li>
+            <li  class="active">
+              <a href="drivercard.html">
+                <i class="fa fa-th"></i> <span>Drivers</span> 
+              </a>
+            </li>
+            <li>
+              <a href="security.html">
+                <i class="fa fa-pie-chart"></i>
+                <span>Bus Security</span>
+
+              </a>
+
+            </li>
+
+
+
+            <li>
+              <a href="#">
+                <i class="fa fa-calendar"></i> <span>Calendar</span>
+
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-envelope"></i> <span>Gallery</span>
+
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-envelope"></i> <span>Categories</span>
+
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-envelope"></i> <span>Settings</span>
+
+              </a>
+            </li>
+
+
+          </ul>
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+      <!--           -->
+      <!-- Right side column. Contains the navbar and content of the page -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header" >
+          <h1>
+            Student Details
+            <small>Bus Tracking System</small>
+
+          </h1>
+
+          <!--          <img src="images/buschild.jpg" style="width:100px;height:50px;float:right">-->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+          <!-- Small boxes (Stat box) -->
+          <div class="row">
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3 ng-bind="driverdetails.studentCount"></h3>
+                  <p>Students</p>
+                </div>
+                <div class="icon">
+                  <img src="images/kids.png" style="width:80px;height:80px;">
+                </div>
+                <a href="#" class="small-box-footer " style="z-index:0;">More info <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-green">
+                <div class="inner">
+                  <h3 ng-bind="driverdetails.driverCount"></h3>
+                  <p>Drivers</p>
+                </div>
+                <div class="icon">
+                  <img src="images/driverblack.png" style="width:80px;height:80px;">
+                </div>
+                <a href="#" class="small-box-footer" style="z-index:0;">More info <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-yellow">
+                <div class="inner">
+                  <h3 ng-bind="driverdetails.busSecurityCount"></h3>
+                  <p>Bus Securities</p>
+                </div>
+                <div class="icon">
+                  <img src="images/security1.png" style="width:80px;height:80px;">
+                </div>
+                <a href="#" class="small-box-footer" style="z-index:0;">More info <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-red">
+                <div class="inner">
+                  <h3 ng-bind="driverdetails.buscount"></h3>
+                  <p>Buses</p>
+                </div>
+                <div class="icon">
+                  <img src="images/bus.png" style="width:80px;height:80px;">
+                </div>
+                <a href="#" class="small-box-footer" style="z-index:0;">More info <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+          </div><!-- /.row -->
+          <!-- Main row -->
+
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title" style="color:black;">Drivers Table</h3>
+
+                  <!--                   <h4 class="box-title sbox" style="float:right;background-color:#ccffe9;color: #00a65a;width:fit-content;padding:5px;border:1px #00a65a solid;border-radius: 5px;margin-right: 5px;">Add Bus</h4>
+                   <h4 class="box-title sbox" style="float:right;background-color:#ccffe9;color: #00a65a;width:fit-content;padding:5px;border:1px #00a65a solid;border-radius: 5px;margin-right: 5px;">Remove Bus</h4>-->
+
+
+                  <!--                  <div class="box-tools">
+                                      <div class="input-group">
+                                        <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
+                                        <div class="input-group-btn">
+                                          <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                                        </div>
+                                      </div>
+                                    </div>-->
+                </div><!-- /.box-header -->
+                <div  ng-if="text.Drivers.length === 0">No Records Found kindly, add drivers</div>
+                <div style="display: inline-block;margin: auto;" >
+                  <!--	<?php
+                  $con= mysqli_connect("localhost","root","12345","testing") or die("unable to Establish Connection...!");
+                  if (!$con)
+                  {
+                    die("unable to Establish Connection...!");
+                  }else{
+                  global $con;
+                  $value="select * from vendor_details where status='ACTIVE' ORDER BY id DESC";
+                  $result=mysqli_query($con,$value) or die("Error in Query : ".$sql);
+                          while($r = mysqli_fetch_array($result)){
+                          ?>-->
+
+                  <div class="card" style="float: left;" ng-repeat="x in xxx">
+                    <ul type="none" style="margin:0px;padding:5px;">
+                      <li style="float: right;margin:0px;color:white;margin-right: 5px;">
+                        <i class="fa fa-trash-o" style="font-size:25px;" ng-click="delete();"></i>
+                      </li>
+                      <li style="float: right;margin:0px;color:white;margin-right: 5px;"> 
+                        <i class="fa fa-pencil-square-o" ng-click="sample(x, $index);" style="font-size:25px;" aria-hidden="true">
+                        </i></li>
+                    </ul>
+                    <ul type="none" style="display: inline-block; padding:0px 10px;margin:0px;">
+                      <li style="float: left;">
+                        <img src="images/demo.jpg"  alt="User Image" height="60" width="60" style="background-color: #FFFFFF;border-radius: 50%;"/>
+                      </li >
+                      <li style="float:left;margin-left: 5px;">
+
+                        <span style="color:black;font-size: 20px;">{{x.name}}</span>
+                      </li>
+                      <!--                                            <li style="">
+                      
+                                                                      <span style="color:white;margin-left:10px;font-size: 18px;">Route no: 6</span>
+                                                                  </li>-->
+                    </ul>
+
+                    <table align="center">
+                      <tr>
+                        <td>Street Name: </td>
+                        <td>{{x.address.streetname}}</td>
+                      </tr>
+                      <tr>
+                        <td>City:</td>
+                        <td>{{x.address.city}}</td>
+
+                      </tr>
+                      <tr>
+                        <td>State: </td>
+                        <td>{{x.address.state}}</td>
+                      </tr>
+                      <tr>
+                        <td>Pin Code: </td>
+                        <td>{{x.address.pincode}}</td>
+                      </tr>
+                      <tr>
+                        <td>Phone No: </td>
+                        <td>{{x.phone}}</td>
+                      </tr>
+                      <tr>
+                        <td>Experience:</td>
+                        <td>{{x.experiance}}</td>
+                      </tr>
+                      <tr>
+                        <td>Badge Number: </td>
+                        <td>{{x.badgeNumber}}</td>
+                      </tr>
+                      <tr>
+                        <td>Known languages: </td>
+                        <td>{{x.knownLanguages}}</td>
+                      </tr>
+
+                      <tr>
+                        <td>Driving License: </td>
+                        <td>{{x.drivingLicense}}</td>
+                      </tr>
+                      <tr>
+                        <td>DOB: </td>
+                        <td>{{x.dob| date:'dd/MM/yyyy'}}</td>
+                      </tr>
+                      <tr>
+                        <td>Valid from: </td>
+                        <td>{{x.validfrom| date:'dd/MM/yyyy'}}</td>
+                      </tr>
+                      <tr>
+                        <td>Valid To: </td>
+                        <td>{{x.validto| date:'dd/MM/yyyy'}}</td>
+                      </tr>
+                    </table>
+
+
+                  </div>
+
+
+
+                </div>
+              </div><!-- /.box -->
+            </div>
+          </div>
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+      <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+
+        </div>
+        <strong>Copyright@School </strong> All rights reserved.
+      </footer>
+    </div><!-- ./wrapper -->
+
+    <!--pop up box-->
+
+    <div class="cd-popup {{pop}}" >
+      <div class="cd-popupwhite" role="alert"> 
+        <img src="images/checkmark.gif" style="width:200px;height:150px;border-radius: 50%;" alt="">
+
+        <p>Success</p>
+        <p class="successmessage" style="color:black;">{{smessage}}</p>
+        <p >
+          <input type="button" class="closebutton" value="OK" ng-click="showpop();" >
+        </p>
+      </div>
+    </div> 
+  
+
+    <!--pop up box END-->
+    <div class="deleteit {{deleteany}}">
+      <div class="delete-white" role="alert">
+        <div class="sure">
+          <span>Are you sure!!!</span>
+        </div>
+          <div class="douwant">
+          <span>Do you want to delete?</span>
+        </div>
+         <div class="conf">
+          <span ng-click="doyes();">Yes</span>
+           <span ng-click="dono();">No</span>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Trigger/Open The Modal -->
+    <div  class="float_button" ng-click="toggleForm()">
+      +
+    </div>
+
+    <!--<button id="myBtn">Open Modal</button>-->
+
+
+
+    <script>
+
+              var modal = document.getElementById('myModal');
+              var btn = document.getElementsByClassName("float_button")[0];
+
+
+              btn.onclick = function () {
+                  modal.style.display = "block";
+              };
+
+
+
+
+
+    </script>
+    <script>
+              $(document).ready(function () {
+                  $("#clickme").click(function () {
+                      $("#alertboxid").show(2000);
+                      setTimeout(function ()
+                      {
+                          $("#alertboxid").hide(4000);
+                      }, 3000);
+                  });
+
+              });
+
+    </script>
+    <script>
+              var app = angular.module('driverApp', ['ngStorage']);
+              app.controller('driverCtrl', function ($scope, $http, $window, $localStorage) {
+                  if (!$localStorage.token) {
+                      window.location = "/Admintrack/userlogin.html";
+                  }
+                  $scope.deleteit="";
+                  $scope.pop = "";
+                  $scope.req = false;
+                  $scope.modalhide = true;
+                  $scope.submitted = false;
+                  $scope.errormessage = "";
+                  $scope.isupdate = true;
+                  $scope.updateRec = -1;
+                  $scope.imm = {};
+                  $scope.driverdetails = $localStorage.storeinit;
+                  $http.get('http://192.168.0.107:8082/getalldriversbyorg', {
+                      headers: {'X-AUTH-TOKEN': $localStorage.token}
+                  }).then(
+                          function mySuccess(response)
+                          {
+                              $scope.text = response.data;
+                              if ($scope.text.Error === "no")
+                              {
+                                  console.log("Data :" + $scope.text.Drivers);
+                                  $scope.xxx = $scope.text.Drivers;
+
+                              } else {
+                                  $scope.message = "Error :" + $scope.text.Message;//ordid missing
+
+                              }
+                          }, function myError(response)
+                  {
+                      $scope.message = response.statusText;
+                  });
+
+
+                  $scope.orgid = 10;
+                  $scope.smessage = "";
+                  $scope.errormessage = "";
+                  $scope.answer = [];
+                  $scope.submit2 = function () {
+
+                      console.log($scope.apple);
+                      $scope.submitted = true;
+                      $http.post('http://192.168.0.107:8082/addDriver', $scope.xyz, {headers: {'X-AUTH-TOKEN': $localStorage.token}
+                      }).then(
+                              function mySuccess(response)
+                              {
+                                  $scope.submitted = false;
+
+                                  $scope.text = response.data;
+                                  if ($scope.text.Error === "No")
+                                  {
+                                      $scope.driverdetails.driverCount++;
+                                      $scope.pop = "is-visible";
+//                                      $scope.smessage = "Successfully added " + $scope.text.Driver.name;
+                                      $scope.smessage = $scope.text.Message;
+                                      if ($scope.isupdate === false)
+                                      {
+                                          $scope.xxx.push($scope.text.Driver);
+                                      } else {
+                                          if ($scope.updateRec >= 0) {
+                                              $scope.xxx[$scope.updateRec] = $scope.xyz;
+                                          }
+
+//                                        for(i=0;i<$scope.xxx.length;i++){
+//                                          if($scope.xxx[i].id === $scope.xyz.id){
+//                                            $scope.xxx[i] = $scope.xyz;
+//                                            break;
+//                                          }
+//                                        }
+                                      }
+                                      $scope.xyz = null;
+//                                      $scope.modalhide = true;
+                                      $(".modal").hide();
+                                      $scope.errormessage = "";
+
+
+                                  } else if ($scope.text.Error === "Yes") {
+                                      //$scope.xyz = $scope.text.sent;
+                                      $scope.smessage = "";
+                                      $scope.errormessage = $scope.text.Message;
+                                  }
+
+                              }, function myError(response) {
+                          $scope.submitted = false;
+                          $scope.pop = "is-visible";
+                          $scope.errormessage = response.statusText;
+                      });
+                  };
+
+                  $scope.showpop = function () {
+                      $scope.pop = "";
+
+
+
+                  };
+
+//                  console.log("Modelhide ="+$scope.modalhide);
+
+                  $scope.toggleForm = function ()
+                  {
+                      $scope.isupdate = false;
+                      $scope.updateRec = -1;
+                      $(".modal").show();
+                      //console.log("Name:"+$scope.xyz.name);
+//                      if ($scope.modalhide === false) {
+//                          $scope.modalhide = true;
+//                          //$scope.xyz = x;
+//                          $scope.errormessage = "";
+//
+//                      } else {
+//                          $scope.modalhide = false;
+//                      }
+//                      console.log("Modelhide =" + $scope.modalhide);
+                  };
+                  $scope.sample = function (x, i)
+                  {
+
+                      $scope.xyz = angular.copy(x);
+                      $scope.xyz.dob = new Date(x.dob);
+                      $scope.xyz.validto = new Date(x.validto);
+                      $scope.xyz.validfrom = new Date(x.validfrom);
+                      $scope.isupdate = true;
+                      $scope.updateRec = i;
+                      $(".modal").show();
+                    };
+                    
+                     $scope.delete = function()
+                     {
+                       console.log("hai hello");
+                        $scope.deleteany = "is-visible";
+                     };
+
+                  $scope.closeForm = function () {
+                      $scope.xyz = null;
+//                      $scope.toggleForm();
+                      $(".modal").hide();
+//                      $window.location.reload();
+                  };
+                   $scope.doyes = function () {
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                        }
+                  
+                        $scope.dono = function () {
+                         $scope.deleteany = "";
+                        }
+
+                  $scope.signout = function () {
+
+                      $http.get('http://192.168.0.107:8082/logout', {
+                          headers: {'X-AUTH-TOKEN': $localStorage.token}
+                      })
+                              .then(
+                                      function mySuccess(response)
+                                      {
+
+                                          $scope.mainpage = response.data;
+                                          if ($scope.mainpage.Error === "No")
+                                          {
+                                              $localStorage.storeinit = null;
+                                              $localStorage.token = null;
+                                              window.location = "/Admintrack/userlogin.html";
+
+                                          } else
+                                          {
+                                              $scope.message = $scope.mainpage.Message;
+                                              alert($scope.message);
+                                          }
+
+                                      }, function myError(response)
+                              {
+                                  $scope.message = response.statusText;
+                              }
+
+                              );
+                  };
+
+
+              });
+
+    </script>
+    <!--end of pop up box-->
+    <!-- jQuery 2.1.3 -->
+    <script src="plugins/jQuery/jQuery-2.1.3.min.js"></script>
+    <!-- jQuery UI 1.11.2 -->
+    <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.min.js" type="text/javascript"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+              $.widget.bridge('uibutton', $.ui.button);
+    </script>
+    <!-- Bootstrap 3.3.2 JS -->
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>    
+    <!-- Morris.js charts -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="plugins/morris/morris.min.js" type="text/javascript"></script>
+    <!-- Sparkline -->
+    <script src="plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
+    <!-- jvectormap -->
+    <script src="plugins/jvectormap/jquery-jvectormap-1.2.2.min.js" type="text/javascript"></script>
+    <script src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js" type="text/javascript"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="plugins/knob/jquery.knob.js" type="text/javascript"></script>
+    <!-- daterangepicker -->
+    <script src="plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
+    <!-- datepicker -->
+    <script src="plugins/datepicker/bootstrap-datepicker.js" type="text/javascript"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
+    <!-- iCheck -->
+    <script src="plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+    <!-- Slimscroll -->
+    <script src="plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <!-- FastClick -->
+    <script src='plugins/fastclick/fastclick.min.js'></script>
+    <!-- AdminLTE App -->
+    <script src="js/app.min.js" type="text/javascript"></script>
+
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="js/pages/dashboard.js" type="text/javascript"></script>
+
+    <!-- AdminLTE for demo purposes -->
+    <script src="js/demo.js" type="text/javascript"></script>
+
+  </body>
+</html>

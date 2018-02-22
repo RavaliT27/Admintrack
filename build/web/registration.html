@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+  <head>
+    <title>Registration form</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css" rel="stylesheet" >
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/popsuccess.css">
+    <style>
+
+
+      /*      <!--consider-->*/
+      .main-center{
+          /*          max-width: fit-content;
+                    min-width: 500px;*/
+          /*max-width: 500px;*/
+          width:fit-content;
+          margin: 0 auto;
+          padding: 40px 40px;
+          background-color: #cfd7e1;
+          height:fit-content;
+          margin-bottom: 2%;
+      }
+
+
+
+      /*<!--consider-->*/
+      *,*{
+          font-family: cursive;
+      }
+      body{
+          background: url("images/white.jpg")  no-repeat ;
+
+          /*background-color: black;*/
+      }
+      @font-face {
+          font-family: allura;
+          src: url(font/allura-regular.ttf);
+      }
+
+
+      input[type="text"]
+      {
+          height:15px;
+
+          background-color:#f2fafd ;
+          color: black;
+          padding:20px 0px 20px 5px ;
+          margin: 10px;
+          border:1px solid #3598db;
+      }  
+      input[type="number"]
+      {
+          height:15px;
+
+          background-color:#f2fafd ;
+          color: black;
+          padding:20px 0px 20px 5px ;
+          margin: 10px;
+          border:1px solid #3598db;
+      }  
+      input[type="email"]
+      {
+          height:15px;
+
+          background-color:#f2fafd ;
+          color: black;
+          padding:20px 0px 20px 5px ;
+          margin: 10px;
+          border:1px solid #3598db;
+          /*      border:none;*/
+
+      }  
+      input[type="date"]
+      {
+          height:15px;
+
+          background-color:#f2fafd ;
+          color: black;
+          padding:20px 0px 20px 5px ;
+          margin: 10px;
+          border:1px solid #3598db;
+          /*      border:none;*/
+
+      }  
+      input[type="submit"]
+      {
+          width:345px;
+          color:white;
+          font-weight: bold;
+          text-align: center;
+          background-color:#3598db;
+          font-size: 16px;
+          border:none;
+          margin: 10px;
+          padding:20px 20px 20px 20px ;
+      }
+
+
+
+
+      ::-webkit-input-placeholder { /* Chrome */
+          color: black;
+          font-weight: bold;
+      }
+      :-ms-input-placeholder { /* IE 10+ */
+          color:  black;
+
+      }
+      ::-moz-placeholder { /* Firefox 19+ */
+          color:  black;
+
+          opacity: 1;
+      }
+      :-moz-placeholder { /* Firefox 4 - 18 */
+          color: black;
+          opacity: 1;
+      }
+      fieldset{
+          border:none;
+      }
+      input[type=number]::-webkit-inner-spin-button, 
+      input[type=number]::-webkit-outer-spin-button { 
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          margin: 0; 
+      }
+      @media (min-width: 400px) {
+          margin:0px 20px;
+      }
+      .col-sm-6
+      {
+          margin:0px;
+      }
+      .row{
+          margin: 0px;
+
+      }
+      .form-control{
+          width:auto !important;
+          margin:10px 0px !important;
+      }
+      .cd-popupwhite{
+          max-width: 400px;
+          height:380px;
+          border:1px solid #6eb44d;
+      }
+      .cd-popupwhite p{
+          font-size:20px;
+          margin: 0px;
+          padding:0px;
+          color:#6eb44d;
+      }
+      .label_otp{
+          float:left;
+          color:#009694;
+      }
+      .otp_input{
+          /*    float:left;*/
+          width:100%;
+          margin: 10px 0px !important;
+          border:1px solid #cccccc !important;
+          background-color: white !important;
+      }
+      .otp_button{
+          background-color: #009694;
+          width:100%;
+          margin-top: 15px;
+          padding:10px;
+          border:none;
+          color:white;
+      }
+      hr{
+          border:0.5px solid #009694;
+          width:50%;
+      }
+      .otp_resend{
+          margin-top: 15px !important;
+          text-decoration: underline;
+
+      }
+    </style>
+  </head>
+  <body ng-app="myApp" ng-controller="myCtrl">
+
+
+
+    <!--                  <table>
+                        <tr ng-repeat="x in xxx" style="background-color: pink">
+                          <td style="border:1px solid black;text-align: left"> Orgname: {{x.orgname}}</td>
+                          <td style="border:1px solid black;text-align: left">Contactname : {{x.contactname}}</td>
+                        </tr>
+                        <tr ng-repeat="x in answer" style="background-color: olive">
+                          <td style="border:1px solid black;text-align: left"> Orgname: {{x.orgname}}</td>
+                          <td style="border:1px solid black;text-align: left">Contactname : {{x.contactname}}</td>
+                        </tr>
+                        <li ng-repeat="x in answer"Orgname:> {{x.orgname}}, Contactname : {{x.contactname}}</li>
+                      </table>
+                      <div  ng-if="text.Organizations.length === 0">No Records Found</div>-->
+
+
+
+    <div class="container">
+      <div class="main" style="margin-top: 4%;">
+        <div class="main-center" align="center">
+          <span style="color:red;font-size: 20px;"> {{message}}</span>
+          <form ng-submit="otp(apple.contactphone);" name="userForm" style="width:fit-content;">
+            <h2 style="text-decoration: underline;color: #3598db;align:center;">Registration form</h2>
+            <div class="row">
+              <div class="col-sm-6">
+                <input type="text" ng-model="apple.orgname"  style="margin:0px;" class="form-control" placeholder="School Name" required>
+              </div>
+              <div class="col-sm-6 form-group" ng-class="{'has-error' : userForm.phonenumber.$invalid && !userForm.phonenumber.$pristine }">
+                <input type="number" class="form-control" name="phonenumber" ng-minlength="3" ng-maxlength="10" ng-model="apple.orgphone"   placeholder="Phone Number" >
+                <p ng-show="userForm.phonenumber.$error.minlength" class="help-block">phone number is too short.</p>
+                <p ng-show="userForm.phonenumber.$error.maxlength" class="help-block">phone number is too long.</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <input type="text" class="form-control" ng-model="apple.contactname" placeholder="contactname" required>
+              </div>
+
+
+
+              <!--            <div  ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">-->
+              <div class="col-sm-6" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
+                <input type="email"  class="form-control" name="email" ng-model="apple.contactemail" placeholder="email address" required>
+                <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>
+              </div>
+            </div>
+
+
+            <div class="row">
+
+              <div class="col-sm-6">
+                <input type="number"  class="form-control" ng-model="apple.contactphone" placeholder="contactphone" required>
+              </div>
+              <div class="col-sm-6">
+                <input type="text"  class="form-control"  ng-model="apple.schooladdress.streetname" placeholder="streetname" required>
+              </div>
+
+            </div>
+
+
+
+            <div class="row">
+
+              <div class="col-sm-6">
+                <input type="text" class="form-control" ng-model="apple.schooladdress.city" placeholder="city" required>
+              </div>
+
+
+
+
+
+              <div class="col-sm-6">
+                <input type="text"  class="form-control" ng-model="apple.schooladdress.state" placeholder="state" required >
+              </div>
+
+            </div>
+
+
+
+            <div class="row">
+
+              <div class="col-sm-6">
+                <input type="number" class="form-control" ng-model="apple.schooladdress.pincode" placeholder="pincode" required>
+              </div>
+
+
+
+
+
+              <div class="col-sm-6">
+                <input type="date"  class="form-control" ng-model="apple.started" placeholder="started" required>
+              </div>
+
+            </div>
+
+
+            <div class="row">
+
+              <div class="col-sm-6">
+
+                <input type="text"  class="form-control" ng-model="apple.logoUrl" placeholder="logoUrl" required>
+              </div>
+
+
+
+              <!--<input type="number" min="0" ng-model="apple.status"  placeholder="status" required>-->
+
+              <div class="col-sm-6">
+                <input type="text"  class="form-control" ng-model="apple.contactimage" placeholder="contactimage" required>
+              </div>
+
+            </div>
+
+
+            <div class="row">
+
+              <div class="col-sm-6">
+                <input type="text"  class="form-control" ng-model="apple.location" placeholder="Location" required>
+
+              </div>
+
+
+
+              <input type="submit" value="submitt"  ng-disabled="userForm.$invalid">
+
+
+            </div>
+
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="cd-popup {{pop}}" >
+      <div class="cd-popupwhite" role="alert"> 
+        <img src="images/checkmark.gif" style="width:200px;height:150px;border-radius: 50%;" alt="">
+
+        <p>{{message}}</p>
+        <p class="successmessage" style="color:black;"><br> check you mail for further details.</p>
+        <p>
+          <input type="button" class="closebutton" value="OK" ng-click="showpop();">
+        </p>
+      </div>
+    </div> 
+
+    <!--OTP Screen-->
+    <div class="cd-popup {{otppop}}" >
+      <div class="cd-popupwhite" role="alert" style="padding:20px;border:1px solid #009694;border-radius:0px;"> 
+        <!--<img src="images/checkmark.gif" style="width:200px;height:150px;border-radius: 50%;" alt="">-->
+
+        <p style="color:#009694;margin-bottom: 10px;">Please enter the OTP you recieved</p>
+        <hr>
+        <form ng-submit="submit2(otp)">
+          <fieldset>
+
+            <label class="label_otp">Phone Number:</label>
+            <h2>{{reg.contactphone}}</h2>
+
+
+            <label class="label_otp">Enter the OTP:</label>
+            <input type="number" ng-model="otp" class="otp_input" id="otp">
+            <input type="submit" class="otp_button" value="submit">
+            <div class="otp_resend"><a href="leadlogin.html" style="color:#009694;">resend the OTP ?</a></div>
+
+
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    <!--OTP Screen end-->
+    <script>
+              var app = angular.module('myApp', []);
+              app.controller('myCtrl', function ($scope, $http, $window) {
+                  $scope.req = false;
+
+                  $scope.otp = function (phone) {
+                      $http.get('http://192.168.0.107:8082/otp?&prps=1&phone=' + phone)
+                              .then(
+                                      function mySuccess(response)
+                                      {
+
+                                          $scope.textotp = response.data;
+                                          if ($scope.textotp.Error === "No")
+                                          {
+
+                                              $scope.otppop = "is-visible";
+                                              console.log("hello " + $scope.otppop);
+
+                                          } else {
+                                              $scope.message = $scope.textotp.Message;
+                                          }
+
+                                      }
+
+                              );
+                  };
+
+
+                  $scope.answer = [];
+                  $scope.submit2 = function (otp1) {
+                      alert("mdsjfbskjf");
+                      console.log("xcxv" + otp1);
+
+                      console.log($scope.apple);
+                      $http.get('http://192.168.0.107:8082/validateOtp?phone=' + $scope.apple.contactphone + '&otp=' + otp1).then(
+                              function onSucess(response) {
+                                  if (response.data.Error === "No")
+                                  {
+                                      $http.post('http://192.168.0.107:8082/addOrganization?otp=' + otp1, $scope.apple)
+                                              .then(
+                                                      function mySuccess(response)
+                                                      {
+                                                          $scope.submitted = false;
+
+                                                          $scope.text = response.data;
+                                                          if ($scope.text.Error === "no")
+                                                          {
+                                                              $scope.otppop = "";
+                                                              $scope.pop = "is-visible";
+                                                              $scope.message = "Successfully added " + $scope.text.Organization.orgname;
+                                                              $scope.answer.push($scope.text.Organization);
+                                                          } else {
+                                                              $scope.message = $scope.text.Message;
+                                                          }
+
+                                                      },
+                                                      function myError(response)
+                                                      {
+                                                          $scope.submitted = false;
+                                                          $scope.pop = "is-visible";
+                                                          $scope.message = response.statusText;
+                                                      });
+                                  }
+
+                              },
+                              function onFail(response) {
+
+                              });
+
+                      $scope.submitted = true;
+
+                  };
+                  $scope.showpop = function () {
+                      $scope.pop = "";
+                 
+
+//window.location = "/BusTrackingLogins/sucess.html";
+
+                  };
+
+
+              });
+
+
+
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,231 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Aug 30, 2017, 6:44:20 PM
+    Author     : pc4
+*/
+
+body{
+    /*  background: linear-gradient(rgba(0,0,0, 0.6), rgba(0, 0, 0, 0.6 )), url("../images/body.jpg") fixed ;*/
+    background: black;
+
+}
+input[type="text"]
+{
+    /*background: url("../images/s.png");*/
+    background-repeat: no-repeat;
+    height:15px;
+    width:270px;
+    background-color:#cccccc;
+    color: black;
+    margin: 3px;
+    border-radius: 8px;
+    border: none;
+
+    background-size: 50px 50px;
+    padding:20px 20px 20px 55px ;
+    margin: 5px;
+}  
+input:focus {
+    border: 0px;
+    outline-width: 0;
+
+}
+input[type="password"]
+{
+    /*background: url("../images/l.png");*/
+    background-repeat: no-repeat;
+    height:15px;
+    width:270px;
+    background-color:#cccccc;
+    color: black;
+    margin: 3px;
+    border-radius: 8px;
+    border: none;
+    background-position: 12px 10px;
+    background-size: 30px 30px;
+    padding:20px 20px 20px 55px ;
+    margin: 5px;
+
+}  
+input[type="submit"],
+input[type="button"]
+{
+    height:45px;
+    border-radius: 5px;
+    width:100px;
+    color:white;
+    font-weight: bold;
+    text-align: center;
+    background-color:#737373;
+    padding:20px 20px 20px 20px ;
+    border:none;
+    margin-top: 25px;
+
+}
+input[type="checkbox"]{
+    width: 20px; 
+    height: 20px;
+}
+.grip{
+    align-content: center;
+    width:400px;
+    height: 400px;
+    margin:10% auto;
+    /*    background-color: rgb(26, 255, 209) ; */
+    background-color: white;
+    padding-top: 20px;
+    border-radius: 8px;
+}
+/*   @media screen and (min-width : 532px)
+{
+    .grip{
+         width:200px;
+   height: 200px;
+    }
+}*/
+
+*::-webkit-input-placeholder {
+    color: #262626;
+}
+span.psw {
+    float: right;
+    padding-top: 16px;
+    padding-right: 10px;
+}
+.rem{
+    float: left;
+    margin-top: 20px;
+}
+.back{
+    background: pink;
+}
+label{
+    position:absolute; 
+    margin-left: 60px;
+    margin-top: 20px;
+    pointer-events: none;
+
+}
+
+.active {
+    -webkit-transform: translateY(55px);
+    transform: translateY(55px);
+    margin-left: 6px;
+    font-size: 16px;
+
+    transition: all 1.5s ease;
+}
+.field-wrap{
+    position: relative;
+    margin-bottom: 30px;
+}
+.error{
+
+    padding: 10px;
+    color:#ff0000;
+    /*    background-color:#cccccc;*/
+}
+/*toast message*/
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: whitesmoke;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 17px;
+}
+
+#snackbar.show {
+    background-color: #ff6666;
+    color:black;
+    font-size: 17px;
+    visibility: visible;
+    -webkit-animation: fadein 1s, fadeout 2s 2s;
+    /*animation: fadein 0.5s, fadeout 0.5s 2.5s;*/
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0px; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0px; opacity: 0;}
+}
+/*end of toast message*/
+
+/*snackbar message*/
+#success {
+
+    visibility: hidden;
+    min-width: 250px;
+    /*    margin-left: -100px;*/
+    margin-right: 0px;
+    background-color: #ffb3d9;
+    color: #b30059;
+    text-align: center;
+    border-radius: 8px 0px 0px 8px;
+    padding: 16px;
+    position: fixed;
+    z-index: 10010;
+    right:0px;
+    top:10px;
+    font-size: 17px;
+    border:1px solid #b3ffff;
+}
+
+#success.show {
+    background-color: #ffb3d9;
+    border:1px solid #b30059;
+    color: #b30059;
+    visibility: visible;
+    -webkit-animation: fadein 1s, fadeout 2s 1s;
+    animation: fadein 1s, fadeout 2s 1s;
+
+}
+
+@-webkit-keyframes fadein {
+    from {right: 0; opacity: 0;} 
+    to { right:10px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {right: 0; opacity: 0;}
+    to { right:10px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from { right:10px; opacity: 1;} 
+    to {right: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from { right:10px; opacity: 1;}
+    to {right: 0; opacity: 0;}
+}
+/*end of snackbar message*/
+
+
+

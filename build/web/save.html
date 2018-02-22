@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Bus tracking</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <!-- Bootstrap 3.3.2 -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />    
+    <!-- FontAwesome 4.3.0 -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Ionicons 2.0.0 -->
+    <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />    
+    <!-- Theme style -->
+    <link href="dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+    <!-- AdminLTE Skins. Choose a skin from the css/skins 
+         folder instead of downloading all of them to reduce the load. -->
+    <link href="dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+    <!-- iCheck -->
+    <link href="plugins/iCheck/flat/blue.css" rel="stylesheet" type="text/css" />
+    <!-- Morris chart -->
+    <link href="plugins/morris/morris.css" rel="stylesheet" type="text/css" />
+    <!-- jvectormap -->
+    <link href="plugins/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+    <!-- Date Picker -->
+    <link href="plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
+    <!-- Daterange picker -->
+    <link href="plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<meta charset="utf-8">
+	<!-- <script type="text/javascript">
+		function hell(x) {
+			// body...
+			alert("hell is running"+x);
+		}
+	</script> -->
+
+
+
+
+			<style>
+			.card{
+				
+				max-width: 300px;
+				background-color: #99ffff;
+				border-radius: 15px;
+				padding-bottom: 5px;
+				margin: 10px;
+        max-height:350px;
+}
+.card img{
+	float:left;
+}
+.card li{
+	/*margin-top: 20px;*/
+
+}
+
+hr{
+	position: relative;
+	float: left;
+	width: 100%;
+}
+.span-btn{
+  float: right;
+  margin: 3px;
+  font-weight: bold;
+  padding: 2px 6px;
+  background-color:#DADADA;
+  border-radius: 50%;
+  box-shadow: 2px;
+  cursor: pointer;
+ }
+ table{
+ 	border:1px solid black;
+ 	border-radius: 10px;
+ 	margin:20px 10px;
+ 	width:94%;
+ 	height:100px;
+
+ }
+ tr,td{
+ /*	border:1px solid black;*/
+
+ 	width:70px;
+ }
+ .bott
+ {
+ 	height:50px;
+ 	width:280px;
+ 	background-color: #ffa366;
+ 	border-radius: 5px;
+ 	margin:10px;
+
+ }
+
+ .edit{
+ 	display: block;
+ 	margin-top: 50px;
+
+ }
+ .fa{
+	padding:5px;
+}
+h3,h4{
+	margin:0px;
+	padding:0px;
+}
+
+/*model*/
+.modal-main{
+		position:fixed;
+		top: 0px;
+		left: 0px;
+		width: 100%;
+		height:100%;
+		background-color:rgba(0, 0, 0, 0.2);
+		display: none;
+		animation: zoom 200ms ease-in;
+	   -webkit-animation: zoom 200ms ease-in;
+	}
+	.model-in{
+		width: 400px;
+		height: auto;
+		padding: 5px;
+		background-color: white;
+		border-radius: 10px;
+		
+        }
+   .middle{
+        top: 50%;
+        left: 50%;
+        position: relative;
+		-moz-transform: translate(-50%,-50%);
+		-webkit-transform: translate(-50%,-50%);
+		-o-transform: translate(-50%,-50%);
+		-ms-transform: translate(-50%,-50%);
+		transform: translate(-50%,-50%);
+
+	}
+	.modal-close{
+	float: right;
+	font-weight: bold;
+	padding: 2px 6px;
+	background-color:#DADADA;
+	border-radius: 50%;
+	box-shadow: 2px;
+	cursor: pointer;
+	}
+	.modal-close:hover{
+		background-color:#E61400;
+	}
+	.model-head{
+		padding: 10px;
+		text-align: center;
+		font-weight: bold;
+	}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes zoom {
+    from {transform:scale(0);}
+    to {transform: scale(1);}
+}
+
+/* Standard syntax */
+@keyframes zoom {
+    0% {transform:scale(0);}
+    50% {transform: scale(1.2);}
+    100% {transform: scale(1);}
+}
+
+/*end model*/
+			
+.fbtn{
+	display: inline-block;
+	align:center;
+    margin: 5px auto; 
+    padding: 5px 10px;
+    background-color:rgb(0, 45, 86);
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px #888888;
+  }
+  .fbtn:hover{
+    background-color: black;
+  }
+  table textarea{
+  	 resize: none;
+  	 background-color: #99ffff;
+  	 border:0px solid black;
+  	 color:black;
+  	 overflow:hidden
+  }
+  /*snackbar*/
+  #snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 17px;
+}
+
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+  /*End of Snackbar*/
+ 
+
+ 
+#floating-button{
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: #db4437;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  cursor: pointer;
+  box-shadow: 0px 2px 5px #666;
+}
+
+.plus{
+  color: white;
+  position: absolute;
+  top: 0;
+  display: block;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  line-height: 55px;
+  font-size: 38px;
+  font-family: 'Roboto';
+  font-weight: 300;
+  animation: plus-out 0.3s;
+  transition: all 0.3s;
+}
+
+#container-floating{
+  position: fixed;
+  width: 70px;
+  height: 70px;
+  bottom: 30px;
+  right: 30px;
+  z-index: 50px;
+}
+
+#container-floating:hover{
+  height: 400px;
+  width: 90px;
+  padding: 30px;
+}
+
+#container-floating:hover .plus{
+  animation: plus-in 0.15s linear;
+  animation-fill-mode: forwards;
+}
+
+.edit{
+  position: absolute;
+  top: 0;
+  display: block;
+  bottom: 0;
+  left: 0;
+  display: block;
+  right: 0;
+  padding: 0;
+  opacity: 0;
+  margin: auto;
+  line-height: 65px;
+  transform: rotateZ(-70deg);
+  transition: all 0.3s;
+  animation: edit-out 0.3s;
+}
+
+#container-floating:hover .edit{
+  animation: edit-in 0.2s;
+   animation-delay: 0.1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes edit-in{
+    from {opacity: 0; transform: rotateZ(-70deg);}
+    to {opacity: 1; transform: rotateZ(0deg);}
+}
+
+@keyframes edit-out{
+    from {opacity: 1; transform: rotateZ(0deg);}
+    to {opacity: 0; transform: rotateZ(-70deg);}
+}
+
+@keyframes plus-in{
+    from {opacity: 1; transform: rotateZ(0deg);}
+    to {opacity: 0; transform: rotateZ(180deg);}
+}
+
+@keyframes plus-out{
+    from {opacity: 0; transform: rotateZ(180deg);}
+    to {opacity: 1; transform: rotateZ(0deg);}
+}
+</style>
+    <style>
+        th{
+            background-color: #00a65a;
+            color:white;
+        }
+        tr{
+            background-color: #ccffe9;
+        }
+        </style>
+  </head>
+  <body class="skin-blue">
+    <div class="wrapper">
+      
+      <header class="main-header">
+        <!-- Logo -->
+<!--        -->
+ 
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+            
+          <!-- Sidebar toggle button-->
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+          </a>
+          <span class="school-name">Sri Kakatiya School of Excellence &nbsp;BTS</span>
+<!--          <img src="images/School.png" style="width:40px;height:40px;float:left">-->
+<!--<b style="font-size: 25px;margin-left: 5%;color:orange;">Sri Kakatiya School of Excellence &nbsp;BTS</b>-->
+          
+          <div class="navbar-custom-menu">
+                
+            <ul class="nav navbar-nav">
+             
+              <li class="dropdown user user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <img src="images/sukesh.jpg" class="user-image" alt="User Image"/>
+                  <span class="hidden-xs">Sukesh Kumar</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <!-- User image -->
+                  <li class="user-header">
+                    <img src="images/sukesh.jpg" class="img-circle" alt="User Image" />
+                    <p>
+                    Sukesh Kumar - Software Developer & CTO
+                     
+                    </p>
+                  </li>
+                  <!-- Menu Body -->
+                 
+                  <!-- Menu Footer-->
+                  <li class="user-footer">
+                    
+                    <div class="pull-right">
+                      <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </nav>
+       
+      </header>
+      <!-- Left side column. contains the logo and sidebar -->
+      <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+          <!-- Sidebar user panel -->
+          <div class="user-panel">
+<!--            <div class="pull-left image">
+              <img src="images/sukesh.jpg" class="img-circle" alt="User Image"/>
+            </div>-->
+            <div class="pull-left">
+            <img style="width:150px;height:50px;margin:10px 30px;" src="images/neemlogo.png" alt="User Image"/>
+            </div>
+          </div>
+         
+          <ul class="sidebar-menu">
+            <li class="header">MAIN NAVIGATION</li>
+            <li>
+              <a href="index3.html">
+                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+              </a>
+            </li>
+            <li>
+              <a href="bus.html">
+                <i class="fa fa-files-o"></i>
+                <span>Buses</span>
+               
+              </a>
+             
+            </li>
+            <li class=" treeview">
+              <a href="students.html">
+                <i class="fa fa-files-o"></i>
+                <span>Students</span>
+               
+              </a>
+             
+            </li>
+            <li class="active">
+              <a href="#">
+                <i class="fa fa-th"></i> <span>Drivers</span> 
+              </a>
+            </li>
+            <li>
+              <a href="security.html">
+                <i class="fa fa-pie-chart"></i>
+                <span>Bus Security</span>
+               
+              </a>
+             
+            </li>
+           
+            
+           
+            <li>
+              <a href="#">
+                <i class="fa fa-calendar"></i> <span>Calendar</span>
+               
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-envelope"></i> <span>Gallery</span>
+                
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-envelope"></i> <span>Categories</span>
+                
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-envelope"></i> <span>Settings</span>
+                
+              </a>
+            </li>
+            
+            
+          </ul>
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+
+      <!-- Right side column. Contains the navbar and content of the page -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header" >
+          <h1>
+           Student Details
+            <small>Bus Tracking System</small>
+          
+          </h1>
+            
+<!--          <img src="images/buschild.jpg" style="width:100px;height:50px;float:right">-->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+          <!-- Small boxes (Stat box) -->
+          <div class="row">
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3>500</h3>
+                  <p>Students</p>
+                </div>
+                <div class="icon">
+                 <img src="images/kids.png" style="width:80px;height:80px;">
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-green">
+                <div class="inner">
+                  <h3>30</h3>
+                  <p>Drivers</p>
+                </div>
+                <div class="icon">
+                 <img src="images/driverblack.png" style="width:80px;height:80px;">
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-yellow">
+                <div class="inner">
+                  <h3>30</h3>
+                  <p>Bus Securities</p>
+                </div>
+                <div class="icon">
+                <img src="images/security1.png" style="width:80px;height:80px;">
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-red">
+                <div class="inner">
+                  <h3>30</h3>
+                  <p>Buses</p>
+                </div>
+                <div class="icon">
+                 <img src="images/bus.png" style="width:80px;height:80px;">
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+          </div><!-- /.row -->
+          <!-- Main row -->
+         
+<div class="row">
+            <div class="col-xs-12">
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title">Drivers Table</h3>
+                   <h4 class="box-title sbox" style="float:right;background-color:#ccffe9;color: #00a65a;width:fit-content;padding:5px;border:1px #00a65a solid;border-radius: 5px;margin-right: 5px;">Add Bus</h4>
+ <h4 class="box-title sbox" style="float:right;background-color:#ccffe9;color: #00a65a;width:fit-content;padding:5px;border:1px #00a65a solid;border-radius: 5px;margin-right: 5px;">Remove Bus</h4>
+
+                  
+<!--                  <div class="box-tools">
+                    <div class="input-group">
+                      <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
+                      <div class="input-group-btn">
+                        <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                      </div>
+                    </div>
+                  </div>-->
+                </div><!-- /.box-header -->
+                <div style="display: inline-block;margin: auto;" >
+<!--	<?php
+$con= mysqli_connect("localhost","root","12345","testing") or die("unable to Establish Connection...!");
+if (!$con)
+{
+  die("unable to Establish Connection...!");
+}else{
+global $con;
+$value="select * from vendor_details where status='ACTIVE' ORDER BY id DESC";
+$result=mysqli_query($con,$value) or die("Error in Query : ".$sql);
+	while($r = mysqli_fetch_array($result)){
+	?>-->
+<div class="card" style="float: left;">
+<!--		<span class="span-btn vendor_cross" id="<?php echo 'del'.$r['id']; ?>" >X</span>-->
+		<ul type="none" style="display: inline-block;padding-left: 10px; ">
+			<li style="float: left;">
+			<!--<img src="images/icon.png" alt=" " height="60" width="60" style="background-color: #FFFFFF;border-radius: 50%; ">-->
+			  <img src="images/sukesh.jpg"  alt="User Image" height="60" width="60" style="background-color: #FFFFFF;border-radius: 50%; "/>
+                        </li>
+			<li style="float: left;">
+				<ul type=none style="padding-left: 10px; ">
+							<li><h3>Sukesh Kumar</h3></li>
+						
+				</ul>
+			</li>
+		</ul>
+<hr> 
+<table align="center">
+	<tr>
+		<td>Address:</td>
+		<td title="<?php echo $r['Address']?>"> <textarea disabled rows="3" cols="25" id="myText">2-6-789/k/5, Shanti nagar, Golnaka, Amberpet, Hyderabad, Telangana.</textarea>
+		</td>
+		</tr>
+		<tr>
+    <td>Phone no: </td>
+    <td>9948562456</td>
+  </tr>
+	
+	<tr>
+		<td>Route no: </td>
+		<td>6</td>
+	</tr>
+	<tr>
+		<td>Age: </td>
+		<td>30</td>
+	</tr>
+	<tr>
+		<td>Sheduled Time: </td>
+		<td>7:00 AM</td>
+	</tr>
+	<tr>
+		<td>Bus Number: </td>
+		<td>TS34y565</td>
+	</tr>
+  </table>
+
+
+		</div>
+<div class="card" style="float: left;">
+<!--		<span class="span-btn vendor_cross" id="<?php echo 'del'.$r['id']; ?>" >X</span>-->
+		<ul type="none" style="display: inline-block;padding-left: 10px; ">
+			<li style="float: left;">
+			<!--<img src="images/icon.png" alt=" " height="60" width="60" style="background-color: #FFFFFF;border-radius: 50%; ">-->
+			  <img src="images/sukesh.jpg"  alt="User Image" height="60" width="60" style="background-color: #FFFFFF;border-radius: 50%; "/>
+                        </li>
+			<li style="float: left;">
+				<ul type=none style="padding-left: 10px; ">
+							<li><h3>Sukesh Kumar</h3></li>
+						
+				</ul>
+			</li>
+		</ul>
+<hr> 
+<table align="center">
+	<tr>
+		<td>Address:</td>
+		<td title="<?php echo $r['Address']?>"> <textarea disabled rows="3" cols="25" id="myText">2-6-789/k/5, Shanti nagar, Golnaka, Amberpet, Hyderabad, Telangana.</textarea>
+		</td>
+		</tr>
+		<tr>
+    <td>Phone no: </td>
+    <td>9948562456</td>
+  </tr>
+	
+	<tr>
+		<td>Route no: </td>
+		<td>6</td>
+	</tr>
+	<tr>
+		<td>Age: </td>
+		<td>30</td>
+	</tr>
+	<tr>
+		<td>Sheduled Time: </td>
+		<td>7:00 AM</td>
+	</tr>
+	<tr>
+		<td>Bus Number: </td>
+		<td>TS34y565</td>
+	</tr>
+  </table>
+
+
+		</div>
+<div class="card" style="float: left;">
+<!--		<span class="span-btn vendor_cross" id="<?php echo 'del'.$r['id']; ?>" >X</span>-->
+		<ul type="none" style="display: inline-block;padding-left: 10px; ">
+			<li style="float: left;">
+			<!--<img src="images/icon.png" alt=" " height="60" width="60" style="background-color: #FFFFFF;border-radius: 50%; ">-->
+			  <img src="images/sukesh.jpg"  alt="User Image" height="60" width="60" style="background-color: #FFFFFF;border-radius: 50%; "/>
+                        </li>
+			<li style="float: left;">
+				<ul type=none style="padding-left: 10px; ">
+							<li><h3>Sukesh Kumar</h3></li>
+						
+				</ul>
+			</li>
+		</ul>
+<hr> 
+<table align="center">
+	<tr>
+		<td>Address:</td>
+		<td title="<?php echo $r['Address']?>"> <textarea disabled rows="3" cols="25" id="myText">2-6-789/k/5, Shanti nagar, Golnaka, Amberpet, Hyderabad, Telangana.</textarea>
+		</td>
+		</tr>
+		<tr>
+    <td>Phone no: </td>
+    <td>9948562456</td>
+  </tr>
+	
+	<tr>
+		<td>Route no: </td>
+		<td>6</td>
+	</tr>
+	<tr>
+		<td>Age: </td>
+		<td>30</td>
+	</tr>
+	<tr>
+		<td>Sheduled Time: </td>
+		<td>7:00 AM</td>
+	</tr>
+	<tr>
+		<td>Bus Number: </td>
+		<td>TS34y565</td>
+	</tr>
+  </table>
+
+
+		</div>
+<div class="card" style="float: left;">
+<!--		<span class="span-btn vendor_cross" id="<?php echo 'del'.$r['id']; ?>" >X</span>-->
+		<ul type="none" style="display: inline-block;padding-left: 10px; ">
+			<li style="float: left;">
+			<!--<img src="images/icon.png" alt=" " height="60" width="60" style="background-color: #FFFFFF;border-radius: 50%; ">-->
+			  <img src="images/sukesh.jpg"  alt="User Image" height="60" width="60" style="background-color: #FFFFFF;border-radius: 50%; "/>
+                        </li>
+			<li style="float: left;">
+				<ul type=none style="padding-left: 10px; ">
+							<li><h3>Sukesh Kumar</h3></li>
+						
+				</ul>
+			</li>
+		</ul>
+<hr> 
+<table align="center">
+	<tr>
+		<td>Address:</td>
+		<td title="<?php echo $r['Address']?>"> <textarea disabled rows="3" cols="25" id="myText">2-6-789/k/5, Shanti nagar, Golnaka, Amberpet, Hyderabad, Telangana.</textarea>
+		</td>
+		</tr>
+		<tr>
+    <td>Phone no: </td>
+    <td>9948562456</td>
+  </tr>
+	
+	<tr>
+		<td>Route no: </td>
+		<td>6</td>
+	</tr>
+	<tr>
+		<td>Age: </td>
+		<td>30</td>
+	</tr>
+	<tr>
+		<td>Sheduled Time: </td>
+		<td>7:00 AM</td>
+	</tr>
+	<tr>
+		<td>Bus Number: </td>
+		<td>TS34y565</td>
+	</tr>
+  </table>
+
+
+		</div>
+<div class="card" style="float: left;">
+<!--		<span class="span-btn vendor_cross" id="<?php echo 'del'.$r['id']; ?>" >X</span>-->
+		<ul type="none" style="display: inline-block;padding-left: 10px; ">
+			<li style="float: left;">
+			<!--<img src="images/icon.png" alt=" " height="60" width="60" style="background-color: #FFFFFF;border-radius: 50%; ">-->
+			  <img src="images/sukesh.jpg"  alt="User Image" height="60" width="60" style="background-color: #FFFFFF;border-radius: 50%; "/>
+                        </li>
+			<li style="float: left;">
+				<ul type=none style="padding-left: 10px; ">
+							<li><h3>Sukesh Kumar</h3></li>
+						
+				</ul>
+			</li>
+		</ul>
+<hr> 
+<table align="center">
+	<tr>
+		<td>Address:</td>
+		<td title="<?php echo $r['Address']?>"> <textarea disabled rows="3" cols="25" id="myText">2-6-789/k/5, Shanti nagar, Golnaka, Amberpet, Hyderabad, Telangana.</textarea>
+		</td>
+		</tr>
+		<tr>
+    <td>Phone no: </td>
+    <td>9948562456</td>
+  </tr>
+	
+	<tr>
+		<td>Route no: </td>
+		<td>6</td>
+	</tr>
+	<tr>
+		<td>Age: </td>
+		<td>30</td>
+	</tr>
+	<tr>
+		<td>Sheduled Time: </td>
+		<td>7:00 AM</td>
+	</tr>
+	<tr>
+		<td>Bus Number: </td>
+		<td>TS34y565</td>
+	</tr>
+  </table>
+
+
+		</div>
+<div class="card" style="float: left;">
+<!--		<span class="span-btn vendor_cross" id="<?php echo 'del'.$r['id']; ?>" >X</span>-->
+		<ul type="none" style="display: inline-block;padding-left: 10px; ">
+			<li style="float: left;">
+			<!--<img src="images/icon.png" alt=" " height="60" width="60" style="background-color: #FFFFFF;border-radius: 50%; ">-->
+			  <img src="images/sukesh.jpg"  alt="User Image" height="60" width="60" style="background-color: #FFFFFF;border-radius: 50%; "/>
+                        </li>
+			<li style="float: left;">
+				<ul type=none style="padding-left: 10px; ">
+							<li><h3>Sukesh Kumar</h3></li>
+						
+				</ul>
+			</li>
+		</ul>
+<hr> 
+<table align="center">
+	<tr>
+		<td>Address:</td>
+		<td title="<?php echo $r['Address']?>"> <textarea disabled rows="3" cols="25" id="myText">2-6-789/k/5, Shanti nagar, Golnaka, Amberpet, Hyderabad, Telangana.</textarea>
+		</td>
+		</tr>
+		<tr>
+    <td>Phone no: </td>
+    <td>9948562456</td>
+  </tr>
+	
+	<tr>
+		<td>Route no: </td>
+		<td>6</td>
+	</tr>
+	<tr>
+		<td>Age: </td>
+		<td>30</td>
+	</tr>
+	<tr>
+		<td>Sheduled Time: </td>
+		<td>7:00 AM</td>
+	</tr>
+	<tr>
+		<td>Bus Number: </td>
+		<td>TS34y565</td>
+	</tr>
+  </table>
+
+
+		</div>
+<div class="card" style="float: left;">
+<!--		<span class="span-btn vendor_cross" id="<?php echo 'del'.$r['id']; ?>" >X</span>-->
+		<ul type="none" style="display: inline-block;padding-left: 10px; ">
+			<li style="float: left;">
+			<!--<img src="images/icon.png" alt=" " height="60" width="60" style="background-color: #FFFFFF;border-radius: 50%; ">-->
+			  <img src="images/sukesh.jpg"  alt="User Image" height="60" width="60" style="background-color: #FFFFFF;border-radius: 50%; "/>
+                        </li>
+			<li style="float: left;">
+				<ul type=none style="padding-left: 10px; ">
+							<li><h3>Sukesh Kumar</h3></li>
+						
+				</ul>
+			</li>
+		</ul>
+<hr> 
+<table align="center">
+	<tr>
+		<td>Address:</td>
+		<td title="<?php echo $r['Address']?>"> <textarea disabled rows="3" cols="25" id="myText">2-6-789/k/5, Shanti nagar, Golnaka, Amberpet, Hyderabad, Telangana.</textarea>
+		</td>
+		</tr>
+		<tr>
+    <td>Phone no: </td>
+    <td>9948562456</td>
+  </tr>
+	
+	<tr>
+		<td>Route no: </td>
+		<td>6</td>
+	</tr>
+	<tr>
+		<td>Age: </td>
+		<td>30</td>
+	</tr>
+	<tr>
+		<td>Sheduled Time: </td>
+		<td>7:00 AM</td>
+	</tr>
+	<tr>
+		<td>Bus Number: </td>
+		<td>TS34y565</td>
+	</tr>
+  </table>
+
+
+		</div>
+
+</div>
+              </div><!-- /.box -->
+            </div>
+          </div>
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+      <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+        
+        </div>
+        <strong>Copyright@School </strong> All rights reserved.
+      </footer>
+    </div><!-- ./wrapper -->
+
+    <!-- jQuery 2.1.3 -->
+    <script src="plugins/jQuery/jQuery-2.1.3.min.js"></script>
+    <!-- jQuery UI 1.11.2 -->
+    <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.min.js" type="text/javascript"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+      $.widget.bridge('uibutton', $.ui.button);
+    </script>
+    <!-- Bootstrap 3.3.2 JS -->
+    <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>    
+    <!-- Morris.js charts -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="plugins/morris/morris.min.js" type="text/javascript"></script>
+    <!-- Sparkline -->
+    <script src="plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
+    <!-- jvectormap -->
+    <script src="plugins/jvectormap/jquery-jvectormap-1.2.2.min.js" type="text/javascript"></script>
+    <script src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js" type="text/javascript"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="plugins/knob/jquery.knob.js" type="text/javascript"></script>
+    <!-- daterangepicker -->
+    <script src="plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
+    <!-- datepicker -->
+    <script src="plugins/datepicker/bootstrap-datepicker.js" type="text/javascript"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
+    <!-- iCheck -->
+    <script src="plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+    <!-- Slimscroll -->
+    <script src="plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <!-- FastClick -->
+    <script src='plugins/fastclick/fastclick.min.js'></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/app.min.js" type="text/javascript"></script>
+
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="dist/js/pages/dashboard.js" type="text/javascript"></script>
+
+    <!-- AdminLTE for demo purposes -->
+    <script src="dist/js/demo.js" type="text/javascript"></script>
+  </body>
+</html>
